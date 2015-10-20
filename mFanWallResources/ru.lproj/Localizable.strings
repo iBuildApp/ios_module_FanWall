@@ -1,0 +1,274 @@
+/****************************************************************************
+ *                                                                           *
+ *  Copyright (C) 2014-2015 iBuildApp, Inc. ( http://ibuildapp.com )         *
+ *                                                                           *
+ *  This file is part of iBuildApp.                                          *
+ *                                                                           *
+ *  This Source Code Form is subject to the terms of the iBuildApp License.  *
+ *  You can obtain one at http://ibuildapp.com/license/                      *
+ *                                                                           *
+ ****************************************************************************/
+
+/* --- module FanWall strings --- */
+
+/* Back */
+"mFW_backButtonTitle" = "Назад";
+
+/* Photos */
+"mFW_backToPhotosButtonTitle" = "Фото";
+
+/* Replies */
+"mFW_backToRepliesPageButtonTitle" = "Ответы";
+
+/* Wall */
+"mFW_backToWallButtonTitle" = "Стена";
+
+/* You haven't enough permissions to create comment here! */
+"mFW_cantCommentAlertMessage" = "Недостаточно прав для создания комментария!";
+
+/* OK */
+"mFW_cantCommentAlertOkButtonTitle" = "OK";
+
+/* Choose Existing Photo */
+"mFW_choosePhotoButtomTitle" = "Галерея";
+
+/* Clear */
+"mFW_clearButtonTitle" = "Очистить";
+
+/* Comments */
+"mFW_commentsPageTitle" = "Комментарии";
+
+/* Create New Account */
+"mFW_CreateNewAccount" = "Создать новую учетную запись";
+
+/* Delete */
+"mFW_deleteButtonTitle" = "Удалить";
+
+/* Email */
+"mFW_emailFieldPlaceholder" = "Email";
+
+/* I have an account */
+"mFW_HaveAnAccount" = "У меня уже есть учетная запись";
+
+/* Turn on Location Services to get coordinates */
+"mFW_locationOffAlertMessage" = "Для определения координат включите геолокацию";
+
+/* OK */
+"mFW_locationOffAlertOkButtonTitle" = "OK";
+
+/* Location Services is Turned off */
+"mFW_locationOffAlertTitle" = "Геолокация отключена";
+
+/* Login */
+"mFW_loginButtonTitle" = "Войти";
+
+/* Make sure you've entered correct email address and password (min 4 symbols) */
+"mFW_loginError01" = "Убедитесь, что Вы ввели корректный email и пароль (минимум 4 символа)";
+
+/* The username and password did not match\nour records, please try again */
+"mFW_loginError03" = "Имя пользователя и пароль не совпадают\nс нашими данными, попробуйте еще раз"; // symbols \n are needed for correct string generation, please don't remove!
+
+/* This email is in use. Please use another email. */
+"mFW_loginError03_mailInUse" = "Этот email уже используется. Пожалуйста, используйте другой email.";
+
+/* Registration error. */
+"mFW_loginError03_registrationError" = "Ошибка регистрации";
+
+/* Passwords don't match.\n */
+"mFW_loginError06" = "Пароли не совпадают\n"; // symbols \n are needed for correct string generation, please don't remove!
+
+/* OK */
+"mFW_loginErrorAlertOkButtonTitle" = "OK";
+
+/* Login with Facebook */
+"mFW_loginFacebookButtonTitle" = "Войти, используя Facebook";
+
+/* Email */
+"mFW_loginPageTitle" = "Email";
+
+/* Login */
+"mFW_LoginTitle" = "Войти";
+
+/* Login with Twitter */
+"mFW_loginTwitterButtonTitle" = "Войти, используя Twitter";
+
+/* OK */
+"mFW_mailInUseOkButtonTitle" = "OK";
+
+/* Map */
+"mFW_mapTabTitle" = "Карта";
+
+/* Near me */
+"mFW_nearMeTabTitle" = "Рядом";
+
+/* Requires a camera to take pictures */
+"mFW_noCameraMessage" = "Для съемки изображений необходима камера";
+
+/* OK */
+"mFW_noCameraOkButtonTitle" = "OK";
+
+/* No Camera Available */
+"mFW_noCameraTitle" = "Камера недоступна";
+
+/* No messages yet */
+"mFW_noMessageString" = "Пока нет сообщений";
+
+/* There are not messages yet. */
+"mFW_noMessagesYetString" = "Сообщений пока нет";
+
+/* or */
+"mFW_Or" = "или";
+
+/* Password */
+"mFW_passwordFieldPlaceholder" = "Пароль";
+
+/* Cancel */
+"mFW_photoCancelButtomTitle" = "Отмена";
+
+/* Photos */
+"mFW_photosTabTitle" = "Фото";
+
+/* Post */
+"mFW_postButtonTitle" = "Отправить";
+
+/* Post your comment! */
+"mFW_postCommentButtonTitle" = "Отправить комментарий!";
+
+/* Posted by  */
+"mFW_postedByPhotoCaption" = "Отправитель: ";
+
+/* Sending failed. Please try again */
+"mFW_postMessageFailedAlertMessage" = "Ошибка отправки. Попробуйте еще раз";
+
+/* OK */
+"mFW_postMessageFailedAlertOkButtonTitle" = "OK";
+
+/* Post a reply! */
+"mFW_postReplyButtonTitle" = "Отправить ответ!";
+
+/* Facebook */
+"mFW_profileFacebookButtonTitle" = "Facebook";
+
+/* iBuildApp */
+"mFW_profileiBuildAppButtonTitle" = "iBuildApp";
+
+/* Twitter */
+"mFW_profileTwitterButtonTitle" = "Twitter";
+
+/* Recent */
+"mFW_recentTabTitle" = "Последние";
+
+/* Replies */
+"mFW_repliesPageTitle" = "Ответы";
+
+/* Send Message */
+"mFW_sendMessageButtonTitle" = "Отправить сообщение";
+
+/* Confirm Password */
+"mFW_signUp_confirmPasswordPlaceholder" = "Подтверждение пароля";
+
+/* Email */
+"mFW_signUp_emailPlaceholder" = "Email";
+
+/* First name */
+"mFW_signUp_firstNamePlaceholder" = "Имя";
+
+/* Last name */
+"mFW_signUp_lastNamePlaceholder" = "Фамилия";
+
+/* Password */
+"mFW_signUp_passwordPlaceholder" = "Пароль";
+
+/* Sign Up */
+"mFW_signupButtonTitle" = "Регистрация";
+
+/* Please enter correct email address.\n */
+"mFW_signUpError04" = "Введите корректный email\n"; // symbols \n are needed for correct string generation, please don't remove!
+
+/* Please enter a password that at least 4 characters long.\n */
+"mFW_signUpError05" = "Длина пароля должна быть не менее 4 символов\n"; // symbols \n are needed for correct string generation, please don't remove!
+
+/* This email is in use. Please use another email. */
+"mFW_signUpError07" = "Этот email уже используется. Пожалуйста, используйте другой email.";
+
+/* Registration error. */
+"mFW_signUpError08" = "Ошибка регистрации";
+
+/* OK */
+"mFW_signUpErrorAlertOkButtonTitle" = "OK";
+
+/* Sign Up */
+"mFW_signupPageTitle" = "Регистрация";
+
+/* Take Photo */
+"mFW_takePhotoButtomTitle" = "Камера";
+
+/* Turn on location services to allow app to determine your locations */
+"mFW_turnOnLocationAlertMessage" = "Для определения координат включите геолокацию";
+
+/* OK */
+"mFW_turnOnLocationAlertOkButtonTitle" = "OK";
+
+/* Wall */
+"mFW_wallTabTitle" = "Стена";
+
+/* Last message */
+"mFW_lastMessageString" = "Последнее сообщение";
+
+/* Profile */
+"mFW_profilePageTitle" = "Профиль";
+
+"mFW_dateDiffJustNow" = "Только что";
+
+/* Initial text for non-system sharing form */
+"mFW_shareFB&TCustomFormInitialText" = "Я только что оставил(а) комментарий к фотографии";
+
+
+
+/* To re-enable, please go to Settings and turn on Location Service for this app. */
+"mFW_locationDisabledMessage" = "Включите определение координат:\nНастройки > Приватность > Геолокация";
+
+/* "To use background location you must turn on 'While Using the App' or 'Always' in the Location Services Settings" */
+"mFW_locationDisabledOpenServicesSettingsMessage" = "Включите определение координат:\nНастройки > Приватность > Геолокация";
+
+/* OK */
+"mFW_locationDisabledOkButtonTitle" = "OK";
+
+/* Cancel */
+"mFW_locationDisabledCancelButtonTitle" = "Отмена";
+
+/* Settings */
+"mFW_locationDisabledSettingsButtonTitle" = "Настройки";
+
+/* Location Service Disabled */
+"mFW_locationDisabledTitle" = "Геолокация отключена";
+
+/* Share message template */
+"mFW_shareMessageTemplate" = "Я нашел это, используя приложение %@: ";
+
+/* Pluralized strings
+ Plurals Localization according CLDR Version 21 http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html */
+"mFW_proflie_%@ posts##{one}" = "%@ сообщение";
+"mFW_proflie_%@ posts##{few}" = "%@ сообщения";
+"mFW_proflie_%@ posts##{many}" = "%@ сообщений";
+"mFW_proflie_%@ posts##{other}" = "%@ сообщений";
+"mFW_proflie_%@ comments##{one}" = "%@ комментарий";
+"mFW_proflie_%@ comments##{few}" = "%@ комментария";
+"mFW_proflie_%@ comments##{many}" = "%@ комментариев";
+"mFW_proflie_%@ comments##{other}" = "%@ комментариев";
+/* Pluralized strings */
+
+
+/* --- DateTime components --- */
+
+/* h */
+"mFW_timeComponent_hours" = "ч";
+
+/* m */
+"mFW_timeComponent_minutes" = "м";
+
+/* s */
+"mFW_timeComponent_seconds" = "с";
+
+/* Share */
+"mFW_photoBrowserSideBarSaveAction" = "Поделиться";

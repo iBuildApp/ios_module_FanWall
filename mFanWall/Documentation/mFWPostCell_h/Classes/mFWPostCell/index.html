@@ -1,0 +1,604 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/1998/REC-html40-19980424/loose.dtd">
+<html>
+<head>
+<title>mFWPostCell</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="HeaderDoc">
+<meta name="xcode-display" content="render">
+<style type="text/css"><!--.char {background: #ffffff; color:#0000ff;}.comment {background:#ffffff; color:#236e25}.function {background:#ffffff; color:#000000;}.keyword {background:#ffffff; color:#761550;}.number {background: #ffffff; color:#0000ff;}.param {background:#ffffff; color:#000000;}.preprocessor {background:#ffffff; color:#236e25}.string {background: #ffffff; color:#891315;}.template {background:#ffffff; color:#761550;}.type {background:#ffffff; color:#761550;}.var {background:#ffffff; color:#000000;}body {border: 0px; margin: 0px;}div {font-size: 10pt; text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; color: #000000;}td {font-size: 10pt; text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; color: #000000;}span.hd_tocAccessSpace { display: block; font-size: 1px; height: 3px; min-height: 3px; }span.hd_tocGroupSpace { display: block; font-size: 1px; height: 3px; min-height: 3px; }span.hd_tocGroup { display: block; font-weight: bold; font-size: 10pt; text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; color: #000000; margin-left: 0px; padding-left: 40px; }span.hd_tocGroup + span.hd_tocAccess { padding-top: 5px; }td.toc_contents_text {font-size: 11pt; text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; color: #000000; }li.tocSubEntry {font-size: 11pt; text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; color: #000000;}p {font-size: 10pt; text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; color: #000000;}a:link {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; color: #36c;}a:visited {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; color: #36c;}a:visited:hover {text-decoration: underline; font-family: lucida grande, geneva, helvetica, arial, sans-serif; color: #36c;}a:active {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; color: #36c;}a:hover {text-decoration: underline; font-family: lucida grande, geneva, helvetica, arial, sans-serif; color: #36c;}h2.h2tight { margin-top: 0px; padding-top: 0px; }h1 { margin-top: 13px; padding-top: 0px; }h4 {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: tiny; font-weight: bold;}h5 {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: 10.1pt; font-weight: bold;}pre {text-decoration: none; font-family: Courier, Consolas, monospace; color: #666; font-size: 10pt;}pre a { font-family: Courier, Consolas, monospace; color: #666;font-size: 10pt;}pre a:link { font-family: Courier, Consolas, monospace; color: #36c;font-size: 10pt;}pre a:visited { font-family: Courier, Consolas, monospace; color: #36c;font-size: 10pt;}pre a:visited:hover { font-family: Courier, Consolas, monospace; color: #36c;font-size: 10pt;}pre a:active { font-family: Courier, Consolas, monospace; color: #36c;font-size: 10pt;}pre a:hover { font-family: Courier, Consolas, monospace; color: #36c;font-size: 10pt;}code {text-decoration: none; font-family: Courier, Consolas, monospace; color: #666;font-size: 10pt;}code a { font-family: Courier, Consolas, monospace; color: #666;font-size: 10pt;}code a:link { font-family: Courier, Consolas, monospace; color: #36c;font-size: 10pt;}code a:visited { font-family: Courier, Consolas, monospace; color: #36c;font-size: 10pt;}code a:visited:hover { font-family: Courier, Consolas, monospace; color: #36c;font-size: 10pt;}code a:active { font-family: Courier, Consolas, monospace; color: #36c;font-size: 10pt;}code a:hover { font-family: Courier, Consolas, monospace; color: #36c;font-size: 10pt;}tt {text-decoration: none; font-family: Courier, Consolas, monospace; color: #666;font-size: 10pt;}tt a { font-family: Courier, Consolas, monospace; color: #666;font-size: 10pt;}tt a:link { font-family: Courier, Consolas, monospace; color: #36c;font-size: 10pt;}tt a:visited { font-family: Courier, Consolas, monospace; color: #36c;font-size: 10pt;}tt a:visited:hover { font-family: Courier, Consolas, monospace; color: #36c;font-size: 10pt;}tt a:active { font-family: Courier, Consolas, monospace; color: #36c;font-size: 10pt;}tt a:hover { font-family: Courier, Consolas, monospace; color: #36c;font-size: 10pt;}body  {text-decoration: none; font-family: Courier, Consolas, monospace; color: #666;font-size: 10pt; padding-left: 0px; padding-top: 0px; margin-left: 0px; margin-top: 0px; border: none; }#hd_outermost_table { margin-left: 0px; border-spacing: 0px; margin-top: 0px; padding-left: 0px; padding-top: 0px; border: none; }#hd_outermost_table > tr { border-spacing: 0px; margin-left: 0px; margin-top: 0px; padding-left: 0px; padding-top: 0px; border: none; }#hd_outermost_table > tr > td { border-spacing: 0px; margin-left: 0px; margin-top: 0px; }#hd_outermost_table > tbody > tr { border-spacing: 0px; margin-left: 0px; margin-top: 0px; padding-left: 0px; padding-top: 0px; border: none; }#hd_outermost_table > tbody > tr > td { border-spacing: 0px; margin-left: 0px; margin-top: 0px; padding-top: 3px; }.afterName { display: none; }.list_indent { margin-left: 40px; }.declaration_indent { margin-left: 40px; margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px; min-height: 12px; vertical-align: middle; }.declaration_indent pre { margin-top: 20px; padding-top: 0px; margin-bottom: 20px; padding-bottom: 0px; }.gapBeforeFooter { display: none; }hr { height: 0px; min-height: 0px; border-top: none; border-left: none; border-right: none; border-bottom: 1px solid #909090;}hr.afterHeader { display: none }.param_group_indent { margin-left: 25px; }.param_indent { margin-left: 40px; margin-top: 0px; padding-top: 0px; }.param_indent dl { margin-top: 4px; padding-top: 0px; }dl dd > p:first-child { margin-top: 2px; padding-top: 0px; }.param_indent dl dd > p:first-child { margin-top: 2px; padding-top: 0px; }.group_indent { margin-left: 40px; }.group_desc_indent { margin-left: 20px; }.warning_indent { margin-left: 40px; }.important_indent { margin-left: 40px; }.note_indent { margin-left: 40px; }h3 {       color: #3C4C6C;}.tight {       margin-top: 2px; margin-bottom: 0px;       padding-top: 0px; padding-bottom: 0px;}h3 a {       color: #3C4C6C;	font-size: 16px;	font-style: normal;	font-variant: normal;	font-weight: bold;	height: 0px;	line-height: normal;}.hd_tocAccess { display: block; margin-left: 40px; font-style: italic; font-size: 10px; font-weight: normal; color: #303030; }.tocSubheading { margin-bottom: 4px; }--></style>
+<style><!--
+body {
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+}
+.toc_contents_text {
+    padding-left: 1em;
+    text-indent: -1em;
+}
+
+ul.tocSubEntryList li.tocSubEntry {
+    list-style: none;
+}
+
+#colorbox {
+		display: none;
+}
+.spec_sheet_line {
+		margin-bottom: 1px;
+}
+.collapsible {
+		display: none;
+}
+.toc_leadspace {
+		width: 10; min-width: 10;
+}
+.disclosure_triangle_td {
+		width: 14; min-width: 14;
+		font-size: 10px;
+		vertical-align: middle;
+}
+.specbox td {
+		font-size: 13px;
+}
+.specbox td a {
+		font-size: 13px;
+}
+.specbox td code {
+		font-size: 13px;
+}
+.specbox td tt {
+		font-size: 13px;
+}
+.specbox td pre {
+		font-size: 13px;
+}
+.specbox a {
+		font-size: 12px;
+}
+.disclosure_triangle_td a {
+		text-decoration: none;
+}
+.disclosure_triangle_td a:link {
+		text-decoration: none;
+}
+.disclosure_triangle_td a:active {
+		text-decoration: none;
+}
+.disclosure_triangle_td a:visited:hover {
+		text-decoration: none;
+}
+.disclosure_triangle_td a:hover {
+		text-decoration: none;
+}
+.hd_toc_box {
+		padding-top: 10px;
+		padding-right: 15px;
+}.tocSeparator {
+		margin-top: 15px;
+		padding-bottom: 0px;
+		margin-bottom: 0px;
+}
+.tocSubEntryList {
+		margin-left: 0px;
+		padding-left: 40px;
+		padding-top: 0px;
+		margin-top: 2px;
+		padding-bottom: 0px;
+		margin-bottom: 8px;
+}
+.hd_toc_heading_table {
+		margin-top: 2px;
+		margin-bottom: 2px;
+}
+.hd_toc_entry_table {
+		margin-top: 2px;
+		margin-bottom: 2px;
+}
+.tocSubEntry {
+		margin-left: 0px;
+		padding-left: 0px;
+		margin-top: 0px;
+		margin-bottom: 1px;
+}
+.tocSubEntry a {
+		font-size: 10pt;
+}
+.tocSubheading {
+		padding-left: 14px;
+		margin-left: 0px;
+		margin-top: 5px;
+		padding-top: 0px;
+		font-size: 16px;
+		color: #808080;
+}
+
+#hd_outermost_table { margin-left: 0px; border-spacing: 0px; margin-top: 0px; padding-left: 0px; padding-top: 0px; border: none; }
+#hd_outermost_table > tr { border-spacing: 0px; margin-left: 0px; margin-top: 0px; padding-left: 0px; padding-top: 0px; border: none; }
+#hd_outermost_table > tr > td { border-spacing: 0px; margin-left: 0px; margin-top: 0px; }
+#hd_outermost_table > tbody > tr { border-spacing: 0px; margin-left: 0px; margin-top: 0px; padding-left: 0px; padding-top: 0px; border: none; }
+#hd_outermost_table > tbody > tr > td { border-spacing: 0px; margin-left: 0px; margin-top: 0px; padding-top: 3px; }
+
+#tocMenu {
+		border-right: 1px solid #c0c0c0;
+		background-color: #f4f4ff;
+		top:0px;
+		left:0px;
+		width:230px;
+		height:100%;
+}
+#bodyContents {
+		width: auto;
+		padding-left: 15px;
+}
+--></style>
+<style id="disable_before_iOS_5"><!--
+#tocMenu {
+		position: fixed;
+		height: 100%;
+		overflow: auto;
+}
+#bodyContents {
+		width: auto;
+		left: 235px;
+		right: 0;
+		padding-left: 15px;
+		position: fixed;
+		height: 100%;
+		overflow-y: scroll;
+}
+--></style>
+<script language="JavaScript" type="text/javascript"><!--
+    if (navigator.platform && (navigator.platform.match(/iPad/) || navigator.platform.match(/iPhone/) || navigator.platform.match(/iPod/))) {
+        if (navigator.userAgent.match(/OS 1(_\d)+/) ||
+            navigator.userAgent.match(/OS 2(_\d)+/) ||
+            navigator.userAgent.match(/OS 3(_\d)+/) ||
+            navigator.userAgent.match(/OS 4(_\d)+/)) {
+                /* Earlier iOS versions require different scrolling gestures with position: fixed. */
+                var del_style_elt = document.getElementById("disable_before_iOS_5");
+                if (del_style_elt) del_style_elt.parentNode.removeChild(del_style_elt);
+        }
+    }
+// --></script><script language="JavaScript" type="text/javascript"><!--
+function getNewHTTPObject()
+{
+        var xmlhttp;
+
+        /** Special IE only code ... */
+        /*@cc_on
+          @if (@_jscript_version >= 5)
+              try
+              {
+                  xmlhttp = new ActiveXObject('Msxml2.XMLHTTP');
+              }
+              catch (e)
+              {
+                  try
+                  {
+                      xmlhttp = new ActiveXObject('Microsoft.XMLHTTP');
+                  }
+                  catch (E)
+                  {
+                      xmlhttp = false;
+                  }
+             }
+          @else
+             xmlhttp = false;
+        @end @*/
+
+        /** Every other browser on the planet */
+        if (!xmlhttp && typeof XMLHttpRequest != 'undefined')
+        {
+            try
+            {
+                xmlhttp = new XMLHttpRequest();
+            }
+            catch (e)
+            {
+                xmlhttp = false;
+            }
+        }
+
+        return xmlhttp;
+}
+
+function hidetoc() {
+	var toc = document.getElementById('tocMenu');
+	var src = toc.getAttribute('src');
+	var xhr = getNewHTTPObject();
+	xhr.open('GET', src, true);
+	xhr.onreadystatechange = function() {
+		if(xhr.readyState == 4) {
+			var toc = document.getElementById('tocMenu');
+			toc.innerHTML = xhr.responseText;
+		}
+	}
+	xhr.send(null);
+	var origURL = parent.document.URL;
+	var contentURL = origURL.substring(origURL.indexOf('?')+1, origURL.length);
+	if (contentURL.length == origURL.length) {
+		jumpPos = origURL.substring(origURL.indexOf('#')+1, origURL.length);
+	}
+	if (contentURL == "hidetoc") {
+		var body = document.getElementById('bodyContents');
+		if (toc && body) {
+			toc.style.display = 'none';
+			body.style.marginLeft = '0px';
+		}
+	}
+}
+
+function disclosure_triangle(elt) {
+   var linkelt = elt;
+   while (elt && elt.tagName != 'TABLE') { elt = elt.parentNode;}
+   if (!elt) { return; }
+   while (elt && elt.tagName != 'DIV') { elt = elt.nextSibling;}
+   if (!elt) { return; }
+   if (parseInt(linkelt.getAttribute('state'))) {
+      // It's open.  Close it
+      linkelt.innerHTML = '&#x25B7;';
+      linkelt.setAttribute('state', 0);
+      linkelt.setAttribute('class', 'closed_disclosure_triangle');
+      elt.style.display = 'none';
+   } else {
+      // It's closed.  Open it
+      linkelt.innerHTML = '&#x25BC;';
+      linkelt.setAttribute('state', 1);
+      linkelt.setAttribute('class', 'open_disclosure_triangle');
+      elt.style.display = 'block';
+   }
+}
+--></script><style type="text/css"><!--.char {background: #ffffff; color:#0000ff;}.comment {background:#ffffff; color:#236e25}.function {background:#ffffff; color:#000000;}.keyword {background:#ffffff; color:#761550;}.number {background: #ffffff; color:#0000ff;}.param {background:#ffffff; color:#000000;}.preprocessor {background:#ffffff; color:#236e25}.string {background: #ffffff; color:#891315;}.template {background:#ffffff; color:#761550;}.type {background:#ffffff; color:#761550;}.var {background:#ffffff; color:#000000;}body {border: 0px; margin: 0px;}div {font-size: 10pt; text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; color: #000000;}td {font-size: 10pt; text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; color: #000000;}span.hd_tocAccessSpace { display: block; font-size: 1px; height: 3px; min-height: 3px; }span.hd_tocGroupSpace { display: block; font-size: 1px; height: 3px; min-height: 3px; }span.hd_tocGroup { display: block; font-weight: bold; font-size: 10pt; text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; color: #000000; margin-left: 0px; padding-left: 40px; }span.hd_tocGroup + span.hd_tocAccess { padding-top: 5px; }td.toc_contents_text {font-size: 11pt; text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; color: #000000; }li.tocSubEntry {font-size: 11pt; text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; color: #000000;}p {font-size: 10pt; text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; color: #000000;}a:link {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; color: #36c;}a:visited {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; color: #36c;}a:visited:hover {text-decoration: underline; font-family: lucida grande, geneva, helvetica, arial, sans-serif; color: #36c;}a:active {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; color: #36c;}a:hover {text-decoration: underline; font-family: lucida grande, geneva, helvetica, arial, sans-serif; color: #36c;}h2.h2tight { margin-top: 0px; padding-top: 0px; }h1 { margin-top: 13px; padding-top: 0px; }h4 {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: tiny; font-weight: bold;}h5 {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: 10.1pt; font-weight: bold;}pre {text-decoration: none; font-family: Courier, Consolas, monospace; color: #666; font-size: 10pt;}pre a { font-family: Courier, Consolas, monospace; color: #666;font-size: 10pt;}pre a:link { font-family: Courier, Consolas, monospace; color: #36c;font-size: 10pt;}pre a:visited { font-family: Courier, Consolas, monospace; color: #36c;font-size: 10pt;}pre a:visited:hover { font-family: Courier, Consolas, monospace; color: #36c;font-size: 10pt;}pre a:active { font-family: Courier, Consolas, monospace; color: #36c;font-size: 10pt;}pre a:hover { font-family: Courier, Consolas, monospace; color: #36c;font-size: 10pt;}code {text-decoration: none; font-family: Courier, Consolas, monospace; color: #666;font-size: 10pt;}code a { font-family: Courier, Consolas, monospace; color: #666;font-size: 10pt;}code a:link { font-family: Courier, Consolas, monospace; color: #36c;font-size: 10pt;}code a:visited { font-family: Courier, Consolas, monospace; color: #36c;font-size: 10pt;}code a:visited:hover { font-family: Courier, Consolas, monospace; color: #36c;font-size: 10pt;}code a:active { font-family: Courier, Consolas, monospace; color: #36c;font-size: 10pt;}code a:hover { font-family: Courier, Consolas, monospace; color: #36c;font-size: 10pt;}tt {text-decoration: none; font-family: Courier, Consolas, monospace; color: #666;font-size: 10pt;}tt a { font-family: Courier, Consolas, monospace; color: #666;font-size: 10pt;}tt a:link { font-family: Courier, Consolas, monospace; color: #36c;font-size: 10pt;}tt a:visited { font-family: Courier, Consolas, monospace; color: #36c;font-size: 10pt;}tt a:visited:hover { font-family: Courier, Consolas, monospace; color: #36c;font-size: 10pt;}tt a:active { font-family: Courier, Consolas, monospace; color: #36c;font-size: 10pt;}tt a:hover { font-family: Courier, Consolas, monospace; color: #36c;font-size: 10pt;}body  {text-decoration: none; font-family: Courier, Consolas, monospace; color: #666;font-size: 10pt; padding-left: 0px; padding-top: 0px; margin-left: 0px; margin-top: 0px; border: none; }#hd_outermost_table { margin-left: 0px; border-spacing: 0px; margin-top: 0px; padding-left: 0px; padding-top: 0px; border: none; }#hd_outermost_table > tr { border-spacing: 0px; margin-left: 0px; margin-top: 0px; padding-left: 0px; padding-top: 0px; border: none; }#hd_outermost_table > tr > td { border-spacing: 0px; margin-left: 0px; margin-top: 0px; }#hd_outermost_table > tbody > tr { border-spacing: 0px; margin-left: 0px; margin-top: 0px; padding-left: 0px; padding-top: 0px; border: none; }#hd_outermost_table > tbody > tr > td { border-spacing: 0px; margin-left: 0px; margin-top: 0px; padding-top: 3px; }.afterName { display: none; }.list_indent { margin-left: 40px; }.declaration_indent { margin-left: 40px; margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px; min-height: 12px; vertical-align: middle; }.declaration_indent pre { margin-top: 20px; padding-top: 0px; margin-bottom: 20px; padding-bottom: 0px; }.gapBeforeFooter { display: none; }hr { height: 0px; min-height: 0px; border-top: none; border-left: none; border-right: none; border-bottom: 1px solid #909090;}hr.afterHeader { display: none }.param_group_indent { margin-left: 25px; }.param_indent { margin-left: 40px; margin-top: 0px; padding-top: 0px; }.param_indent dl { margin-top: 4px; padding-top: 0px; }dl dd > p:first-child { margin-top: 2px; padding-top: 0px; }.param_indent dl dd > p:first-child { margin-top: 2px; padding-top: 0px; }.group_indent { margin-left: 40px; }.group_desc_indent { margin-left: 20px; }.warning_indent { margin-left: 40px; }.important_indent { margin-left: 40px; }.note_indent { margin-left: 40px; }h3 {       color: #3C4C6C;}.tight {       margin-top: 2px; margin-bottom: 0px;       padding-top: 0px; padding-bottom: 0px;}h3 a {       color: #3C4C6C;	font-size: 16px;	font-style: normal;	font-variant: normal;	font-weight: bold;	height: 0px;	line-height: normal;}.hd_tocAccess { display: block; margin-left: 40px; font-style: italic; font-size: 10px; font-weight: normal; color: #303030; }.tocSubheading { margin-bottom: 4px; }--></style>
+</head>
+<body bgcolor="#ffffff" onload="hidetoc();">
+<!-- headerDoc=cl; uid=//apple_ref/occ/cl/mFWPostCell;  name=mFWPostCell-->
+<a name="//apple_ref/occ/cl/mFWPostCell"></a><table id="hd_outermost_table" height="100%" width="100%"><tr>
+<td valign="top" id="tocMenu" src="toc.html"></td>
+<td id="bodyContents" valign="top">
+<a name="top"></a>
+<h1><a name="mFWPostCell">mFWPostCell</a></h1>
+<div class="spec_sheet_info_box"><table cellspacing="0" class="specbox">
+<tr>
+<td scope="row"><b>Superclass:</b></td>
+<td><div style="margin-bottom:1px"><div class="content_text">
+<!-- a logicalPath="//apple_ref/occ/cl/UITableViewCell" machineGenerated="true" -->UITableViewCell<!-- /a -->
+</div></div></td>
+</tr>
+<tr>
+<td scope="row"><b>Declared In:</b></td>
+<td><div style="margin-bottom:1px"><div class="content_text"><a logicalpath="//apple_ref/doc/header/mFWPostCell.h" target="_top" machinegenerated="true" href="../../index.html#//apple_ref/doc/header/mFWPostCell.h">mFWPostCell.h</a></div></div></td>
+</tr>
+</table></div>
+<h2>Introduction</h2>
+<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/occ/cl/mFWPostCell;name=start --><p>Customized UITableViewCell for FanWall posts tableView
+<!-- headerDoc=discussion;uid=//apple_ref/occ/cl/mFWPostCell;name=end --><!-- end discussion -->
+</p>
+<hr class="afterClassOrHeaderInfo">
+<br><a name="HeaderDoc_methods"></a>
+<h2 class="h2tight">Methods</h2>
+<dl>
+<dt><tt><a href="index.html#//apple_ref/occ/instm/mFWPostCell/attachedImageThumbnailURL" target="_top">-attachedImageThumbnailURL</a></tt></dt>
+<dd></dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instm/mFWPostCell/setAttachedImageThumbnailForURL:withPlaceholderImage:" target="_top">-setAttachedImageThumbnailForURL:withPlaceholderImage:</a></tt></dt>
+<dd></dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instm/mFWPostCell/setAvatarImageForURL:withPlaceholderImage:" target="_top">-setAvatarImageForURL:withPlaceholderImage:</a></tt></dt>
+<dd></dd>
+</dl>
+<hr class="betweenAPIEntries">
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/mFWPostCell/attachedImageThumbnailURL;   name=mFWPostCell::attachedImageThumbnailURL --><a name="//apple_ref/occ/instm/mFWPostCell/attachedImageThumbnailURL"></a>
+<h3><a name="attachedImageThumbnailURL">attachedImageThumbnailURL</a></h3>
+<hr class="afterName">
+<div class="declaration_indent">
+<pre><!-- headerDoc=declaration;uid=//apple_ref/occ/instm/mFWPostCell/attachedImageThumbnailURL;name=start -->-(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/intf/NSString //apple_ref/doc/anysymbol/NSString" machineGenerated="true" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>) <!-- a logicalPath="//apple_ref/occ/econst/attachedImageThumbnailURL //apple_ref/occ/data/mFWPostCell/attachedImageThumbnailURL //apple_ref/occ/data/attachedImageThumbnailURL //apple_ref/occ/clconst/mFWPostCell/attachedImageThumbnailURL " machineGenerated="true" --><span class="var">attachedImageThumbnailURL</span><!-- /a -->; <!-- headerDoc=declaration;uid=//apple_ref/occ/instm/mFWPostCell/attachedImageThumbnailURL;name=end --></pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/occ/instm/mFWPostCell/attachedImageThumbnailURL;name=start --><p>URL string for image being currently presented in cell.
+Nil if image is hidden.
+<!-- headerDoc=discussion;uid=//apple_ref/occ/instm/mFWPostCell/attachedImageThumbnailURL;name=end --><!-- end discussion -->
+</p>
+<hr class="betweenAPIEntries">
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/mFWPostCell/setAttachedImageThumbnailForURL:withPlaceholderImage:;   name=mFWPostCell::setAttachedImageThumbnailForURL:withPlaceholderImage: --><a name="//apple_ref/occ/instm/mFWPostCell/setAttachedImageThumbnailForURL:withPlaceholderImage:"></a>
+<h3><a name="setAttachedImageThumbnailForURL:withPlaceholderImage:">setAttachedImageThumbnailForURL:withPlaceholderImage:</a></h3>
+<hr class="afterName">
+<div class="declaration_indent">
+<pre><!-- headerDoc=declaration;uid=//apple_ref/occ/instm/mFWPostCell/setAttachedImageThumbnailForURL:withPlaceholderImage:;name=start -->-(<!-- a logicalPath="//apple_ref/occ/cl/void //apple_ref/occ/tdef/void //apple_ref/occ/tag/void //apple_ref/occ/struct/void //apple_ref/occ/intf/void //apple_ref/doc/anysymbol/void" machineGenerated="true" --><span class="type">void</span><!-- /a -->)<a machinegenerated="true" href="index.html#//apple_ref/occ/instm/mFWPostCell/setAttachedImageThumbnailForURL:withPlaceholderImage:" logicalPath="//apple_ref/occ/instm/mFWPostCell/setAttachedImageThumbnailForURL" target="_top"><span class="function">setAttachedImageThumbnailForURL</span></a>:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/intf/NSString //apple_ref/doc/anysymbol/NSString" machineGenerated="true" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="param">URL</span> 
+        <!-- a logicalPath="//apple_ref/occ/instm/mFWPostCell/withPlaceholderImage //apple_ref/occ/clm/mFWPostCell/withPlaceholderImage //apple_ref/occ/intfcm/mFWPostCell/withPlaceholderImage //apple_ref/occ/intfm/mFWPostCell/withPlaceholderImage //apple_ref/occ/func/withPlaceholderImage //apple_ref/occ/ftmplt/mFWPostCell/withPlaceholderImage //apple_ref/occ/defn/withPlaceholderImage //apple_ref/occ/macro/withPlaceholderImage //apple_ref/doc/anysymbol/withPlaceholderImage" machineGenerated="true" --><span class="function">withPlaceholderImage</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/UIImage //apple_ref/occ/tdef/UIImage //apple_ref/occ/tag/UIImage //apple_ref/occ/struct/UIImage //apple_ref/occ/intf/UIImage //apple_ref/doc/anysymbol/UIImage" machineGenerated="true" --><span class="type">UIImage</span><!-- /a --> <span class="type">*</span>)<!-- a logicalPath="//apple_ref/occ/econst/placeholderImage //apple_ref/occ/data/mFWPostCell/placeholderImage //apple_ref/occ/data/placeholderImage //apple_ref/occ/clconst/mFWPostCell/placeholderImage " machineGenerated="true" --><span class="var">placeholderImage</span><!-- /a -->; <!-- headerDoc=declaration;uid=//apple_ref/occ/instm/mFWPostCell/setAttachedImageThumbnailForURL:withPlaceholderImage:;name=end --></pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt>
+<!-- headerDoc=methodparam;  uid=//apple_ref/doc/methodparam/mFWPostCell/setAttachedImageThumbnailForURL:withPlaceholderImage:/URL;   name=setAttachedImageThumbnailForURL:withPlaceholderImage:::URL -->
+<a name="//apple_ref/doc/methodparam/mFWPostCell/setAttachedImageThumbnailForURL:withPlaceholderImage:/URL"></a>
+<code>URL</code>
+</dt>
+<dd><p>- URL string to download an image.</p></dd>
+<dt>
+<!-- headerDoc=methodparam;  uid=//apple_ref/doc/methodparam/mFWPostCell/setAttachedImageThumbnailForURL:withPlaceholderImage:/placeholderImage;   name=setAttachedImageThumbnailForURL:withPlaceholderImage:::placeholderImage -->
+<a name="//apple_ref/doc/methodparam/mFWPostCell/setAttachedImageThumbnailForURL:withPlaceholderImage:/placeholderImage"></a>
+<code>placeholderImage</code>
+</dt>
+<dd><p>- placeholder shown while image is fetching from URL or from cache.</p></dd>
+</dl>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/occ/instm/mFWPostCell/setAttachedImageThumbnailForURL:withPlaceholderImage:;name=start --><p>Sets attached (main post) image with URL and placeholder image provided.
+</p>
+<!-- headerDoc=discussion;uid=//apple_ref/occ/instm/mFWPostCell/setAttachedImageThumbnailForURL:withPlaceholderImage:;name=end --><!-- end discussion -->
+<hr class="betweenAPIEntries">
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/mFWPostCell/setAvatarImageForURL:withPlaceholderImage:;   name=mFWPostCell::setAvatarImageForURL:withPlaceholderImage: --><a name="//apple_ref/occ/instm/mFWPostCell/setAvatarImageForURL:withPlaceholderImage:"></a>
+<h3><a name="setAvatarImageForURL:withPlaceholderImage:">setAvatarImageForURL:withPlaceholderImage:</a></h3>
+<hr class="afterName">
+<div class="declaration_indent">
+<pre><!-- headerDoc=declaration;uid=//apple_ref/occ/instm/mFWPostCell/setAvatarImageForURL:withPlaceholderImage:;name=start -->-(<!-- a logicalPath="//apple_ref/occ/cl/void //apple_ref/occ/tdef/void //apple_ref/occ/tag/void //apple_ref/occ/struct/void //apple_ref/occ/intf/void //apple_ref/doc/anysymbol/void" machineGenerated="true" --><span class="type">void</span><!-- /a -->)<a machinegenerated="true" href="index.html#//apple_ref/occ/instm/mFWPostCell/setAvatarImageForURL:withPlaceholderImage:" logicalPath="//apple_ref/occ/instm/mFWPostCell/setAvatarImageForURL" target="_top"><span class="function">setAvatarImageForURL</span></a>:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/intf/NSString //apple_ref/doc/anysymbol/NSString" machineGenerated="true" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="param">URL</span> 
+        <!-- a logicalPath="//apple_ref/occ/instm/mFWPostCell/withPlaceholderImage //apple_ref/occ/clm/mFWPostCell/withPlaceholderImage //apple_ref/occ/intfcm/mFWPostCell/withPlaceholderImage //apple_ref/occ/intfm/mFWPostCell/withPlaceholderImage //apple_ref/occ/func/withPlaceholderImage //apple_ref/occ/ftmplt/mFWPostCell/withPlaceholderImage //apple_ref/occ/defn/withPlaceholderImage //apple_ref/occ/macro/withPlaceholderImage //apple_ref/doc/anysymbol/withPlaceholderImage" machineGenerated="true" --><span class="function">withPlaceholderImage</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/UIImage //apple_ref/occ/tdef/UIImage //apple_ref/occ/tag/UIImage //apple_ref/occ/struct/UIImage //apple_ref/occ/intf/UIImage //apple_ref/doc/anysymbol/UIImage" machineGenerated="true" --><span class="type">UIImage</span><!-- /a --> <span class="type">*</span>)<!-- a logicalPath="//apple_ref/occ/econst/placeholderImage //apple_ref/occ/data/mFWPostCell/placeholderImage //apple_ref/occ/data/placeholderImage //apple_ref/occ/clconst/mFWPostCell/placeholderImage " machineGenerated="true" --><span class="var">placeholderImage</span><!-- /a -->; <!-- headerDoc=declaration;uid=//apple_ref/occ/instm/mFWPostCell/setAvatarImageForURL:withPlaceholderImage:;name=end --></pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt>
+<!-- headerDoc=methodparam;  uid=//apple_ref/doc/methodparam/mFWPostCell/setAvatarImageForURL:withPlaceholderImage:/URL;   name=setAvatarImageForURL:withPlaceholderImage:::URL -->
+<a name="//apple_ref/doc/methodparam/mFWPostCell/setAvatarImageForURL:withPlaceholderImage:/URL"></a>
+<code>URL</code>
+</dt>
+<dd><p>- URL string to download an avatar image.</p></dd>
+<dt>
+<!-- headerDoc=methodparam;  uid=//apple_ref/doc/methodparam/mFWPostCell/setAvatarImageForURL:withPlaceholderImage:/placeholderImage;   name=setAvatarImageForURL:withPlaceholderImage:::placeholderImage -->
+<a name="//apple_ref/doc/methodparam/mFWPostCell/setAvatarImageForURL:withPlaceholderImage:/placeholderImage"></a>
+<code>placeholderImage</code>
+</dt>
+<dd><p>- placeholder shown while image is fetching from URL or from cache.</p></dd>
+</dl>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/occ/instm/mFWPostCell/setAvatarImageForURL:withPlaceholderImage:;name=start --><p>Sets user avatar image with URL and placeholder image provided.
+</p>
+<!-- headerDoc=discussion;uid=//apple_ref/occ/instm/mFWPostCell/setAvatarImageForURL:withPlaceholderImage:;name=end --><!-- end discussion -->
+<hr class="betweenSections">
+<a name="HeaderDoc_props"></a>
+<h2 class="h2tight">Properties</h2>
+<dl>
+<dt><tt><a href="index.html#//apple_ref/occ/instp/mFWPostCell/attachedImageThumbnailURL" target="_top">attachedImageThumbnailURL</a></tt></dt>
+<dd></dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instp/mFWPostCell/attachedThumbnailImageView" target="_top">attachedThumbnailImageView</a></tt></dt>
+<dd></dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instp/mFWPostCell/attachedThumbnailImageViewContainer" target="_top">attachedThumbnailImageViewContainer</a></tt></dt>
+<dd></dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instp/mFWPostCell/avatarImageView" target="_top">avatarImageView</a></tt></dt>
+<dd></dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instp/mFWPostCell/backgroundRoundedRectangle" target="_top">backgroundRoundedRectangle</a></tt></dt>
+<dd></dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instp/mFWPostCell/commentsButton" target="_top">commentsButton</a></tt></dt>
+<dd></dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instp/mFWPostCell/commentsSpacer" target="_top">commentsSpacer</a></tt></dt>
+<dd></dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instp/mFWPostCell/likesButton" target="_top">likesButton</a></tt></dt>
+<dd></dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instp/mFWPostCell/postContentsSpacer" target="_top">postContentsSpacer</a></tt></dt>
+<dd></dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instp/mFWPostCell/postDateLabel" target="_top">postDateLabel</a></tt></dt>
+<dd></dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instp/mFWPostCell/postMessageLabel" target="_top">postMessageLabel</a></tt></dt>
+<dd></dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instp/mFWPostCell/sharesButton" target="_top">sharesButton</a></tt></dt>
+<dd></dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instp/mFWPostCell/socialButtonsPane" target="_top">socialButtonsPane</a></tt></dt>
+<dd></dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instp/mFWPostCell/userNameLabel" target="_top">userNameLabel</a></tt></dt>
+<dd></dd>
+</dl>
+<hr class="betweenAPIEntries">
+<!-- headerDoc=instp;  uid=//apple_ref/occ/instp/mFWPostCell/attachedImageThumbnailURL;   name=mFWPostCell::attachedImageThumbnailURL --><a name="//apple_ref/occ/instp/mFWPostCell/attachedImageThumbnailURL"></a>
+<h3><a name="attachedImageThumbnailURL">attachedImageThumbnailURL</a></h3>
+<hr class="afterName">
+<div class="declaration_indent">
+<pre><!-- headerDoc=declaration;uid=//apple_ref/occ/instp/mFWPostCell/attachedImageThumbnailURL;name=start -->@property (<span class="param">nonatomic</span>,
+    <span class="param">readonly</span>,
+    <span class="param">retain</span>) <!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/intf/NSString //apple_ref/doc/anysymbol/NSString" machineGenerated="true" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span><!-- a logicalPath="//apple_ref/occ/econst/attachedImageThumbnailURL //apple_ref/occ/data/mFWPostCell/attachedImageThumbnailURL //apple_ref/occ/data/attachedImageThumbnailURL //apple_ref/occ/clconst/mFWPostCell/attachedImageThumbnailURL " machineGenerated="true" --><span class="var">attachedImageThumbnailURL</span><!-- /a -->; <!-- headerDoc=declaration;uid=//apple_ref/occ/instp/mFWPostCell/attachedImageThumbnailURL;name=end --></pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/occ/instp/mFWPostCell/attachedImageThumbnailURL;name=start --><p>URL string for image being currently presented in cell.
+Nil if image is hidden.
+<!-- headerDoc=discussion;uid=//apple_ref/occ/instp/mFWPostCell/attachedImageThumbnailURL;name=end --><!-- end discussion -->
+</p>
+<hr class="betweenAPIEntries">
+<!-- headerDoc=instp;  uid=//apple_ref/occ/instp/mFWPostCell/attachedThumbnailImageView;   name=mFWPostCell::attachedThumbnailImageView --><a name="//apple_ref/occ/instp/mFWPostCell/attachedThumbnailImageView"></a>
+<h3><a name="attachedThumbnailImageView">attachedThumbnailImageView</a></h3>
+<hr class="afterName">
+<div class="declaration_indent">
+<pre><!-- headerDoc=declaration;uid=//apple_ref/occ/instp/mFWPostCell/attachedThumbnailImageView;name=start -->@property (<span class="param">nonatomic</span>,
+    <span class="param">retain</span>) <!-- a logicalPath="//apple_ref/occ/cl/UIImageView //apple_ref/occ/tdef/UIImageView //apple_ref/occ/tag/UIImageView //apple_ref/occ/struct/UIImageView //apple_ref/occ/intf/UIImageView //apple_ref/doc/anysymbol/UIImageView" machineGenerated="true" --><span class="type">UIImageView</span><!-- /a --> <span class="type">*</span><!-- a logicalPath="//apple_ref/occ/econst/attachedThumbnailImageView //apple_ref/occ/data/mFWPostCell/attachedThumbnailImageView //apple_ref/occ/data/attachedThumbnailImageView //apple_ref/occ/clconst/mFWPostCell/attachedThumbnailImageView " machineGenerated="true" --><span class="var">attachedThumbnailImageView</span><!-- /a -->; <!-- headerDoc=declaration;uid=//apple_ref/occ/instp/mFWPostCell/attachedThumbnailImageView;name=end --></pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/occ/instp/mFWPostCell/attachedThumbnailImageView;name=start --><p>Image view for attached image.
+<!-- headerDoc=discussion;uid=//apple_ref/occ/instp/mFWPostCell/attachedThumbnailImageView;name=end --><!-- end discussion -->
+</p>
+<hr class="betweenAPIEntries">
+<!-- headerDoc=instp;  uid=//apple_ref/occ/instp/mFWPostCell/attachedThumbnailImageViewContainer;   name=mFWPostCell::attachedThumbnailImageViewContainer --><a name="//apple_ref/occ/instp/mFWPostCell/attachedThumbnailImageViewContainer"></a>
+<h3><a name="attachedThumbnailImageViewContainer">attachedThumbnailImageViewContainer</a></h3>
+<hr class="afterName">
+<div class="declaration_indent">
+<pre><!-- headerDoc=declaration;uid=//apple_ref/occ/instp/mFWPostCell/attachedThumbnailImageViewContainer;name=start -->@property (<span class="param">nonatomic</span>,
+    <span class="param">retain</span>) <!-- a logicalPath="//apple_ref/occ/cl/UIView //apple_ref/occ/tdef/UIView //apple_ref/occ/tag/UIView //apple_ref/occ/struct/UIView //apple_ref/occ/intf/UIView //apple_ref/doc/anysymbol/UIView" machineGenerated="true" --><span class="type">UIView</span><!-- /a --> <span class="type">*</span><!-- a logicalPath="//apple_ref/occ/econst/attachedThumbnailImageViewContainer //apple_ref/occ/data/mFWPostCell/attachedThumbnailImageViewContainer //apple_ref/occ/data/attachedThumbnailImageViewContainer //apple_ref/occ/clconst/mFWPostCell/attachedThumbnailImageViewContainer " machineGenerated="true" --><span class="var">attachedThumbnailImageViewContainer</span><!-- /a -->; <!-- headerDoc=declaration;uid=//apple_ref/occ/instp/mFWPostCell/attachedThumbnailImageViewContainer;name=end --></pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/occ/instp/mFWPostCell/attachedThumbnailImageViewContainer;name=start --><p>White view with a shadow to lay attached image on.
+<!-- headerDoc=discussion;uid=//apple_ref/occ/instp/mFWPostCell/attachedThumbnailImageViewContainer;name=end --><!-- end discussion -->
+</p>
+<hr class="betweenAPIEntries">
+<!-- headerDoc=instp;  uid=//apple_ref/occ/instp/mFWPostCell/avatarImageView;   name=mFWPostCell::avatarImageView --><a name="//apple_ref/occ/instp/mFWPostCell/avatarImageView"></a>
+<h3><a name="avatarImageView">avatarImageView</a></h3>
+<hr class="afterName">
+<div class="declaration_indent">
+<pre><!-- headerDoc=declaration;uid=//apple_ref/occ/instp/mFWPostCell/avatarImageView;name=start -->@property (<span class="param">nonatomic</span>,
+    <span class="param">retain</span>) <!-- a logicalPath="//apple_ref/occ/cl/UIImageView //apple_ref/occ/tdef/UIImageView //apple_ref/occ/tag/UIImageView //apple_ref/occ/struct/UIImageView //apple_ref/occ/intf/UIImageView //apple_ref/doc/anysymbol/UIImageView" machineGenerated="true" --><span class="type">UIImageView</span><!-- /a --> <span class="type">*</span><!-- a logicalPath="//apple_ref/occ/econst/avatarImageView //apple_ref/occ/data/mFWPostCell/avatarImageView //apple_ref/occ/data/avatarImageView //apple_ref/occ/clconst/mFWPostCell/avatarImageView " machineGenerated="true" --><span class="var">avatarImageView</span><!-- /a -->; <!-- headerDoc=declaration;uid=//apple_ref/occ/instp/mFWPostCell/avatarImageView;name=end --></pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/occ/instp/mFWPostCell/avatarImageView;name=start --><p>Image view for user's avatar.
+<!-- headerDoc=discussion;uid=//apple_ref/occ/instp/mFWPostCell/avatarImageView;name=end --><!-- end discussion -->
+</p>
+<hr class="betweenAPIEntries">
+<!-- headerDoc=instp;  uid=//apple_ref/occ/instp/mFWPostCell/backgroundRoundedRectangle;   name=mFWPostCell::backgroundRoundedRectangle --><a name="//apple_ref/occ/instp/mFWPostCell/backgroundRoundedRectangle"></a>
+<h3><a name="backgroundRoundedRectangle">backgroundRoundedRectangle</a></h3>
+<hr class="afterName">
+<div class="declaration_indent">
+<pre><!-- headerDoc=declaration;uid=//apple_ref/occ/instp/mFWPostCell/backgroundRoundedRectangle;name=start -->@property (<span class="param">nonatomic</span>,
+    <span class="param">retain</span>) <!-- a logicalPath="//apple_ref/occ/cl/UIView //apple_ref/occ/tdef/UIView //apple_ref/occ/tag/UIView //apple_ref/occ/struct/UIView //apple_ref/occ/intf/UIView //apple_ref/doc/anysymbol/UIView" machineGenerated="true" --><span class="type">UIView</span><!-- /a --> <span class="type">*</span><!-- a logicalPath="//apple_ref/occ/econst/backgroundRoundedRectangle //apple_ref/occ/data/mFWPostCell/backgroundRoundedRectangle //apple_ref/occ/data/backgroundRoundedRectangle //apple_ref/occ/clconst/mFWPostCell/backgroundRoundedRectangle " machineGenerated="true" --><span class="var">backgroundRoundedRectangle</span><!-- /a -->; <!-- headerDoc=declaration;uid=//apple_ref/occ/instp/mFWPostCell/backgroundRoundedRectangle;name=end --></pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/occ/instp/mFWPostCell/backgroundRoundedRectangle;name=start --><p>Backing view (with rounded corners) for a cell.
+<!-- headerDoc=discussion;uid=//apple_ref/occ/instp/mFWPostCell/backgroundRoundedRectangle;name=end --><!-- end discussion -->
+</p>
+<hr class="betweenAPIEntries">
+<!-- headerDoc=instp;  uid=//apple_ref/occ/instp/mFWPostCell/commentsButton;   name=mFWPostCell::commentsButton --><a name="//apple_ref/occ/instp/mFWPostCell/commentsButton"></a>
+<h3><a name="commentsButton">commentsButton</a></h3>
+<hr class="afterName">
+<div class="declaration_indent">
+<pre><!-- headerDoc=declaration;uid=//apple_ref/occ/instp/mFWPostCell/commentsButton;name=start -->@property (<span class="param">nonatomic</span>,
+    <span class="param">retain</span>) <a machinegenerated="true" href="../../../mFWSocialButton_h/Classes/mFWSocialButton/index.html#//apple_ref/occ/cl/mFWSocialButton" logicalPath="//apple_ref/occ/cl/mFWSocialButton" target="_top"><span class="type">mFWSocialButton</span></a> <span class="type">*</span><!-- a logicalPath="//apple_ref/occ/econst/commentsButton //apple_ref/occ/data/mFWPostCell/commentsButton //apple_ref/occ/data/commentsButton //apple_ref/occ/clconst/mFWPostCell/commentsButton " machineGenerated="true" --><span class="var">commentsButton</span><!-- /a -->; <!-- headerDoc=declaration;uid=//apple_ref/occ/instp/mFWPostCell/commentsButton;name=end --></pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/occ/instp/mFWPostCell/commentsButton;name=start --><p>Button showing the number of comments. Tap on it leads to the comments page.
+</p>
+<!-- headerDoc=discussion;uid=//apple_ref/occ/instp/mFWPostCell/commentsButton;name=end --><!-- end discussion -->
+<p><b>See</b></p>
+<div class="list_indent"><dl>
+<dt><p><a href="../../../mFWSocialButton_h/Classes/mFWSocialButton/index.html#//apple_ref/occ/cl/mFWSocialButton" logicalPath="//apple_ref/occ/cl/mFWSocialButton" target="_top">mFWSocialButton</a></p></dt>
+<dd></dd>
+</dl></div>
+<hr class="betweenAPIEntries">
+<!-- headerDoc=instp;  uid=//apple_ref/occ/instp/mFWPostCell/commentsSpacer;   name=mFWPostCell::commentsSpacer --><a name="//apple_ref/occ/instp/mFWPostCell/commentsSpacer"></a>
+<h3><a name="commentsSpacer">commentsSpacer</a></h3>
+<hr class="afterName">
+<div class="declaration_indent">
+<pre><!-- headerDoc=declaration;uid=//apple_ref/occ/instp/mFWPostCell/commentsSpacer;name=start -->@property (<span class="param">nonatomic</span>,
+    <span class="param">retain</span>) <!-- a logicalPath="//apple_ref/occ/cl/UIView //apple_ref/occ/tdef/UIView //apple_ref/occ/tag/UIView //apple_ref/occ/struct/UIView //apple_ref/occ/intf/UIView //apple_ref/doc/anysymbol/UIView" machineGenerated="true" --><span class="type">UIView</span><!-- /a --> <span class="type">*</span><!-- a logicalPath="//apple_ref/occ/econst/commentsSpacer //apple_ref/occ/data/mFWPostCell/commentsSpacer //apple_ref/occ/data/commentsSpacer //apple_ref/occ/clconst/mFWPostCell/commentsSpacer " machineGenerated="true" --><span class="var">commentsSpacer</span><!-- /a -->; <!-- headerDoc=declaration;uid=//apple_ref/occ/instp/mFWPostCell/commentsSpacer;name=end --></pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/occ/instp/mFWPostCell/commentsSpacer;name=start --><p>Separator line between message (or image, if exists) and socialButtonsPane.
+</p>
+<!-- headerDoc=discussion;uid=//apple_ref/occ/instp/mFWPostCell/commentsSpacer;name=end --><!-- end discussion -->
+<p><b>See</b></p>
+<div class="list_indent"><dl>
+<dt><p><a href="index.html#//apple_ref/occ/instp/mFWPostCell/socialButtonsPane" logicalPath="//apple_ref/occ/instp/mFWPostCell/socialButtonsPane" target="_top">socialButtonsPane</a></p></dt>
+<dd></dd>
+</dl></div>
+<hr class="betweenAPIEntries">
+<!-- headerDoc=instp;  uid=//apple_ref/occ/instp/mFWPostCell/likesButton;   name=mFWPostCell::likesButton --><a name="//apple_ref/occ/instp/mFWPostCell/likesButton"></a>
+<h3><a name="likesButton">likesButton</a></h3>
+<hr class="afterName">
+<div class="declaration_indent">
+<pre><!-- headerDoc=declaration;uid=//apple_ref/occ/instp/mFWPostCell/likesButton;name=start -->@property (<span class="param">nonatomic</span>,
+    <span class="param">retain</span>) <a machinegenerated="true" href="../../../mFWSocialButton_h/Classes/mFWSocialButton/index.html#//apple_ref/occ/cl/mFWSocialButton" logicalPath="//apple_ref/occ/cl/mFWSocialButton" target="_top"><span class="type">mFWSocialButton</span></a> <span class="type">*</span><!-- a logicalPath="//apple_ref/occ/econst/likesButton //apple_ref/occ/data/mFWPostCell/likesButton //apple_ref/occ/data/likesButton //apple_ref/occ/clconst/mFWPostCell/likesButton " machineGenerated="true" --><span class="var">likesButton</span><!-- /a -->; <!-- headerDoc=declaration;uid=//apple_ref/occ/instp/mFWPostCell/likesButton;name=end --></pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/occ/instp/mFWPostCell/likesButton;name=start --><p>Button showing the number of facebook likes for image in post, 
+is hidden for pure text posts.
+Tap on it likes the image in the post.
+Disabled when image in the post is already liked.
+</p>
+<!-- headerDoc=discussion;uid=//apple_ref/occ/instp/mFWPostCell/likesButton;name=end --><!-- end discussion -->
+<p><b>See</b></p>
+<div class="list_indent"><dl>
+<dt><p><a href="../../../mFWSocialButton_h/Classes/mFWSocialButton/index.html#//apple_ref/occ/cl/mFWSocialButton" logicalPath="//apple_ref/occ/cl/mFWSocialButton" target="_top">mFWSocialButton</a></p></dt>
+<dd></dd>
+</dl></div>
+<hr class="betweenAPIEntries">
+<!-- headerDoc=instp;  uid=//apple_ref/occ/instp/mFWPostCell/postContentsSpacer;   name=mFWPostCell::postContentsSpacer --><a name="//apple_ref/occ/instp/mFWPostCell/postContentsSpacer"></a>
+<h3><a name="postContentsSpacer">postContentsSpacer</a></h3>
+<hr class="afterName">
+<div class="declaration_indent">
+<pre><!-- headerDoc=declaration;uid=//apple_ref/occ/instp/mFWPostCell/postContentsSpacer;name=start -->@property (<span class="param">nonatomic</span>,
+    <span class="param">retain</span>) <!-- a logicalPath="//apple_ref/occ/cl/UIView //apple_ref/occ/tdef/UIView //apple_ref/occ/tag/UIView //apple_ref/occ/struct/UIView //apple_ref/occ/intf/UIView //apple_ref/doc/anysymbol/UIView" machineGenerated="true" --><span class="type">UIView</span><!-- /a --> <span class="type">*</span><!-- a logicalPath="//apple_ref/occ/econst/postContentsSpacer //apple_ref/occ/data/mFWPostCell/postContentsSpacer //apple_ref/occ/data/postContentsSpacer //apple_ref/occ/clconst/mFWPostCell/postContentsSpacer " machineGenerated="true" --><span class="var">postContentsSpacer</span><!-- /a -->; <!-- headerDoc=declaration;uid=//apple_ref/occ/instp/mFWPostCell/postContentsSpacer;name=end --></pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/occ/instp/mFWPostCell/postContentsSpacer;name=start --><p>Separator line between user avatar, name, date and the rest of the cell.
+<!-- headerDoc=discussion;uid=//apple_ref/occ/instp/mFWPostCell/postContentsSpacer;name=end --><!-- end discussion -->
+</p>
+<hr class="betweenAPIEntries">
+<!-- headerDoc=instp;  uid=//apple_ref/occ/instp/mFWPostCell/postDateLabel;   name=mFWPostCell::postDateLabel --><a name="//apple_ref/occ/instp/mFWPostCell/postDateLabel"></a>
+<h3><a name="postDateLabel">postDateLabel</a></h3>
+<hr class="afterName">
+<div class="declaration_indent">
+<pre><!-- headerDoc=declaration;uid=//apple_ref/occ/instp/mFWPostCell/postDateLabel;name=start -->@property (<span class="param">nonatomic</span>,
+    <span class="param">retain</span>) <!-- a logicalPath="//apple_ref/occ/cl/UILabel //apple_ref/occ/tdef/UILabel //apple_ref/occ/tag/UILabel //apple_ref/occ/struct/UILabel //apple_ref/occ/intf/UILabel //apple_ref/doc/anysymbol/UILabel" machineGenerated="true" --><span class="type">UILabel</span><!-- /a --> <span class="type">*</span><!-- a logicalPath="//apple_ref/occ/econst/postDateLabel //apple_ref/occ/data/mFWPostCell/postDateLabel //apple_ref/occ/data/postDateLabel //apple_ref/occ/clconst/mFWPostCell/postDateLabel " machineGenerated="true" --><span class="var">postDateLabel</span><!-- /a -->; <!-- headerDoc=declaration;uid=//apple_ref/occ/instp/mFWPostCell/postDateLabel;name=end --></pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/occ/instp/mFWPostCell/postDateLabel;name=start --><p>Label with post's sending date.
+By default, points to self.detailTextLabel.
+<!-- headerDoc=discussion;uid=//apple_ref/occ/instp/mFWPostCell/postDateLabel;name=end --><!-- end discussion -->
+</p>
+<hr class="betweenAPIEntries">
+<!-- headerDoc=instp;  uid=//apple_ref/occ/instp/mFWPostCell/postMessageLabel;   name=mFWPostCell::postMessageLabel --><a name="//apple_ref/occ/instp/mFWPostCell/postMessageLabel"></a>
+<h3><a name="postMessageLabel">postMessageLabel</a></h3>
+<hr class="afterName">
+<div class="declaration_indent">
+<pre><!-- headerDoc=declaration;uid=//apple_ref/occ/instp/mFWPostCell/postMessageLabel;name=start -->@property (<span class="param">nonatomic</span>,
+    <span class="param">retain</span>) <!-- a logicalPath="//apple_ref/occ/cl/UILabel //apple_ref/occ/tdef/UILabel //apple_ref/occ/tag/UILabel //apple_ref/occ/struct/UILabel //apple_ref/occ/intf/UILabel //apple_ref/doc/anysymbol/UILabel" machineGenerated="true" --><span class="type">UILabel</span><!-- /a --> <span class="type">*</span><!-- a logicalPath="//apple_ref/occ/econst/postMessageLabel //apple_ref/occ/data/mFWPostCell/postMessageLabel //apple_ref/occ/data/postMessageLabel //apple_ref/occ/clconst/mFWPostCell/postMessageLabel " machineGenerated="true" --><span class="var">postMessageLabel</span><!-- /a -->; <!-- headerDoc=declaration;uid=//apple_ref/occ/instp/mFWPostCell/postMessageLabel;name=end --></pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/occ/instp/mFWPostCell/postMessageLabel;name=start --><p>Label for post's message.
+<!-- headerDoc=discussion;uid=//apple_ref/occ/instp/mFWPostCell/postMessageLabel;name=end --><!-- end discussion -->
+</p>
+<hr class="betweenAPIEntries">
+<!-- headerDoc=instp;  uid=//apple_ref/occ/instp/mFWPostCell/sharesButton;   name=mFWPostCell::sharesButton --><a name="//apple_ref/occ/instp/mFWPostCell/sharesButton"></a>
+<h3><a name="sharesButton">sharesButton</a></h3>
+<hr class="afterName">
+<div class="declaration_indent">
+<pre><!-- headerDoc=declaration;uid=//apple_ref/occ/instp/mFWPostCell/sharesButton;name=start -->@property (<span class="param">nonatomic</span>,
+    <span class="param">retain</span>) <a machinegenerated="true" href="../../../mFWSocialButton_h/Classes/mFWSocialButton/index.html#//apple_ref/occ/cl/mFWSocialButton" logicalPath="//apple_ref/occ/cl/mFWSocialButton" target="_top"><span class="type">mFWSocialButton</span></a> <span class="type">*</span><!-- a logicalPath="//apple_ref/occ/econst/sharesButton //apple_ref/occ/data/mFWPostCell/sharesButton //apple_ref/occ/data/sharesButton //apple_ref/occ/clconst/mFWPostCell/sharesButton " machineGenerated="true" --><span class="var">sharesButton</span><!-- /a -->; <!-- headerDoc=declaration;uid=//apple_ref/occ/instp/mFWPostCell/sharesButton;name=end --></pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/occ/instp/mFWPostCell/sharesButton;name=start --><p>Button showing the number shares for the image, both on twitter and facebook.
+Tap on it presents dialog asking to choose sharing option - twitter or facebook.
+</p>
+<!-- headerDoc=discussion;uid=//apple_ref/occ/instp/mFWPostCell/sharesButton;name=end --><!-- end discussion -->
+<p><b>See</b></p>
+<div class="list_indent"><dl>
+<dt><p><a href="../../../mFWSocialButton_h/Classes/mFWSocialButton/index.html#//apple_ref/occ/cl/mFWSocialButton" logicalPath="//apple_ref/occ/cl/mFWSocialButton" target="_top">mFWSocialButton</a></p></dt>
+<dd></dd>
+</dl></div>
+<hr class="betweenAPIEntries">
+<!-- headerDoc=instp;  uid=//apple_ref/occ/instp/mFWPostCell/socialButtonsPane;   name=mFWPostCell::socialButtonsPane --><a name="//apple_ref/occ/instp/mFWPostCell/socialButtonsPane"></a>
+<h3><a name="socialButtonsPane">socialButtonsPane</a></h3>
+<hr class="afterName">
+<div class="declaration_indent">
+<pre><!-- headerDoc=declaration;uid=//apple_ref/occ/instp/mFWPostCell/socialButtonsPane;name=start -->@property (<span class="param">nonatomic</span>,
+    <span class="param">retain</span>) <!-- a logicalPath="//apple_ref/occ/cl/UIView //apple_ref/occ/tdef/UIView //apple_ref/occ/tag/UIView //apple_ref/occ/struct/UIView //apple_ref/occ/intf/UIView //apple_ref/doc/anysymbol/UIView" machineGenerated="true" --><span class="type">UIView</span><!-- /a --> <span class="type">*</span><!-- a logicalPath="//apple_ref/occ/econst/socialButtonsPane //apple_ref/occ/data/mFWPostCell/socialButtonsPane //apple_ref/occ/data/socialButtonsPane //apple_ref/occ/clconst/mFWPostCell/socialButtonsPane " machineGenerated="true" --><span class="var">socialButtonsPane</span><!-- /a -->; <!-- headerDoc=declaration;uid=//apple_ref/occ/instp/mFWPostCell/socialButtonsPane;name=end --></pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/occ/instp/mFWPostCell/socialButtonsPane;name=start --><p>Container for social buttons.
+</p>
+<!-- headerDoc=discussion;uid=//apple_ref/occ/instp/mFWPostCell/socialButtonsPane;name=end --><!-- end discussion -->
+<p><b>See</b></p>
+<div class="list_indent"><dl>
+<dt><p><a href="index.html#//apple_ref/occ/instp/mFWPostCell/commentsButton" logicalPath="//apple_ref/occ/instp/mFWPostCell/commentsButton" target="_top">commentsButton</a></p></dt>
+<dd></dd>
+<dt><p><a href="index.html#//apple_ref/occ/instp/mFWPostCell/likesButton" logicalPath="//apple_ref/occ/instp/mFWPostCell/likesButton" target="_top">likesButton</a></p></dt>
+<dd></dd>
+<dt><p><a href="index.html#//apple_ref/occ/instp/mFWPostCell/sharesButton" logicalPath="//apple_ref/occ/instp/mFWPostCell/sharesButton" target="_top">sharesButton</a></p></dt>
+<dd></dd>
+</dl></div>
+<hr class="betweenAPIEntries">
+<!-- headerDoc=instp;  uid=//apple_ref/occ/instp/mFWPostCell/userNameLabel;   name=mFWPostCell::userNameLabel --><a name="//apple_ref/occ/instp/mFWPostCell/userNameLabel"></a>
+<h3><a name="userNameLabel">userNameLabel</a></h3>
+<hr class="afterName">
+<div class="declaration_indent">
+<pre><!-- headerDoc=declaration;uid=//apple_ref/occ/instp/mFWPostCell/userNameLabel;name=start -->@property (<span class="param">nonatomic</span>,
+    <span class="param">retain</span>) <!-- a logicalPath="//apple_ref/occ/cl/UILabel //apple_ref/occ/tdef/UILabel //apple_ref/occ/tag/UILabel //apple_ref/occ/struct/UILabel //apple_ref/occ/intf/UILabel //apple_ref/doc/anysymbol/UILabel" machineGenerated="true" --><span class="type">UILabel</span><!-- /a --> <span class="type">*</span><!-- a logicalPath="//apple_ref/occ/econst/userNameLabel //apple_ref/occ/data/mFWPostCell/userNameLabel //apple_ref/occ/data/userNameLabel //apple_ref/occ/clconst/mFWPostCell/userNameLabel " machineGenerated="true" --><span class="var">userNameLabel</span><!-- /a -->; <!-- headerDoc=declaration;uid=//apple_ref/occ/instp/mFWPostCell/userNameLabel;name=end --></pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/occ/instp/mFWPostCell/userNameLabel;name=start --><p>Label with author user name.
+By default, points to self.textLabel.
+<!-- headerDoc=discussion;uid=//apple_ref/occ/instp/mFWPostCell/userNameLabel;name=end --><!-- end discussion -->
+</p>
+<p class="gapBeforeFooter">&nbsp;</p>
+<hr class="afterFooter">
+<div class="hd_copyright_and_timestamp">
+<p class="hd_timestamp">Last Updated: Friday, August 14, 2015
+</p>
+</div>
+</td>
+</tr></table>
+</body>
+</html>
