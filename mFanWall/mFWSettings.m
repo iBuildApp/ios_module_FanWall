@@ -26,20 +26,6 @@
   
 }
 
-- (void) dealloc
-{
-  if (_photos)
-    [_photos release];
-  
-  _photos = nil;
-  
-  if (_imageLinks)
-    [_imageLinks release];
-  
-  _imageLinks = nil;
-  
-  [super dealloc];
-}
 
 
 + (NSString *) dateDiffForDate:(NSDate*)date

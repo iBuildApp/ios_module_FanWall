@@ -95,7 +95,7 @@
   
   if ( cell == nil )
   {
-    cell = [[[NRGridViewCell alloc] initWithReuseIdentifier:MyCellIdentifier] autorelease];
+    cell = [[NRGridViewCell alloc] initWithReuseIdentifier:MyCellIdentifier];
     cell.backgroundColor = [UIColor clearColor];
   }
   cell.imageView.frame = CGRectMake(10, 10,
@@ -116,7 +116,7 @@
   
   [mFWConnection sharedInstance].activeImage = indexPath;
   
-	mFWPhotoBrowser *browser = [[[mFWPhotoBrowser alloc] initWithDelegate:self] autorelease];
+	mFWPhotoBrowser *browser = [[mFWPhotoBrowser alloc] initWithDelegate:self];
   browser.displayActionButton  = YES;
   browser.bSavePicture         = YES;
   browser.leftBarButtonCaption = NSBundleLocalizedString(@"mFW_backToPhotosButtonTitle", @"Photos");
@@ -165,10 +165,10 @@
       [[NSUserDefaults standardUserDefaults] setObject:self.fwSettings.images forKey:@"s_images"];
     }
     
-    self.gallery = [[[NRGridView alloc] initWithFrame:CGRectMake(0.0f,
+    self.gallery = [[NRGridView alloc] initWithFrame:CGRectMake(0.0f,
                                                                  10.0f,
                                                                  self.view.frame.size.width,
-                                                                 self.view.frame.size.height - 10.0f)] autorelease];
+                                                                 self.view.frame.size.height - 10.0f)];
     self.gallery.autoresizesSubviews = YES;
     self.gallery.autoresizingMask    = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.gallery.dataSource = self;
@@ -185,7 +185,7 @@
       [self.fwSettings.imageLinks addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:[[[[self.fwSettings.images objectAtIndex:i] objectForKey:@"thumbs"] objectAtIndex:0] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], @"thumb", nil]];
     }
     
-    NSMutableArray *photos = [[[NSMutableArray alloc] init] autorelease];
+    NSMutableArray *photos = [[NSMutableArray alloc] init];
     MWPhoto *photo;
     for ( int i = 0; i < self.fwSettings.images.count; i++ )
     {
@@ -224,10 +224,8 @@
 - (void) dealloc
 {
   if(backBarButton != nil){
-    [backBarButton release];
     backBarButton = nil;
   }
-  [super dealloc];
 }
 
 @end

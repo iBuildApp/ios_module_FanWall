@@ -24,7 +24,7 @@
 @property (nonatomic, assign) CGFloat minimumHeight;
 @property (nonatomic, assign) CGFloat maximumHeight;
 
-@property (nonatomic, assign) UIScrollView *imageGalleryScrollView;
+@property (nonatomic, weak) UIScrollView *imageGalleryScrollView;
 
 @property (nonatomic, assign) BOOL forceSizeUpdate;
 
@@ -50,7 +50,6 @@
 		self.internalTextView = [[UITextView alloc] initWithFrame:textViewFrame];
 		self.internalTextView.delegate        = self;
 		self.internalTextView.font            = [UIFont systemFontOfSize:15.0];
-		self.internalTextView.contentInset    = UIEdgeInsetsMake(-4.0f, 1.0, -4.0f, 0.0f);
 		self.internalTextView.scrollEnabled   = NO;
     self.internalTextView.opaque          = NO;
     self.internalTextView.backgroundColor = [UIColor clearColor];
@@ -116,12 +115,7 @@
 
 - (void)textViewDidChange:(UITextView *)textView
 {
-	NSInteger newHeight;
-  if(floor(NSFoundationVersionNumber)>NSFoundationVersionNumber_iOS_6_1) {
-    newHeight = [self measureHeightOfUITextView:self.internalTextView];
-  }else {
-    newHeight = self.internalTextView.contentSize.height;
-  }
+  CGFloat newHeight = [textView sizeThatFits:CGSizeMake(textView.frame.size.width, MAXFLOAT)].height;
   
 	if(newHeight < self.minimumHeight || !self.internalTextView.hasText)
   {

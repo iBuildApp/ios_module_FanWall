@@ -19,7 +19,7 @@
   mFWConnection *connection;
 }
 
-@property (nonatomic, retain) mFWConnection *FWConnection;
+@property (nonatomic, strong) mFWConnection *FWConnection;
 
 - (id<MWPhoto>)photoAtIndex:(NSUInteger)index;
 - (void)thisImage:(UIImage *)image hasBeenSavedInPhotoAlbumWithError:(NSError *)error usingContextInfo:(void*)ctxInfo;
@@ -38,7 +38,7 @@
 
   self.FWConnection = [mFWConnection sharedInstance];
   
-  UITapGestureRecognizer *statusBarHider = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideStatusBar)] autorelease];
+  UITapGestureRecognizer *statusBarHider = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideStatusBar)];
   statusBarHider.cancelsTouchesInView = NO;
   statusBarHider.numberOfTapsRequired = 1;
 }
@@ -76,7 +76,6 @@
         actionSheet.destructiveButtonIndex = [actionSheet addButtonWithTitle:NSLocalizedString(@"core_photoBrowserCancelButtonTitle", @"Cancel")];
         [actionSheet showInView:( self.tabBarController ? self.tabBarController.view : self.navigationController.view )];
     }
-    [actionSheet release];
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -194,8 +193,6 @@
 -(void)dealloc
 {
   aSha.delegate = nil;
-  self.FWConnection = nil;
-  [super dealloc];
 }
 
 @end

@@ -90,71 +90,24 @@ static mFWConnection *cmFWConnection = nil;
   @synchronized(self)
   {
     if ( cmFWConnection == nil )
-      cmFWConnection = [NSAllocateObject([self class], 0, NULL) init];
+      cmFWConnection = [[mFWConnection alloc] init];
   }
   return cmFWConnection;
 }
 
-+ (id)allocWithZone:(NSZone *)zone
-{
-  return [[self sharedInstance] retain];
-}
-
-- (id)copyWithZone:(NSZone*)zone
-{
-  return self;
-}
-
-- (id)retain
-{
-  return self;
-}
-
-- (NSUInteger)retainCount
-{
-  return NSUIntegerMax;
-}
-
-- (oneway void)release
-{
-  
-}
-
-- (id)autorelease
-{
-  return self;
-}
-
 - (void)dealloc
 {
-  self.serverMessage  = nil;
 
-  self.activeCell     = nil;
-  self.activeImage    = nil;
 
   [self.spinner removeFromSuperview];
-  self.spinner = nil;
   
   [self.spinnerView removeFromSuperview];
-  self.spinnerView = nil;
 
-  self.mFWAppID       = nil;
-  self.mFWModuleID    = nil;
-  self.mFWCanEdit     = nil;
-  self.mFWAccountID   = nil;
-  self.mFWAccountType = nil;
-  self.mFWUserName    = nil;
-  self.mFWAvatar      = nil;
   
   [self.locationManager stopUpdatingLocation];
   self.locationManager.delegate = nil;
-  self.locationManager = nil;
 
-  self.appName = nil;
-  self.locationTrackingEnabledKey = nil;
-  self.lastToolbar = nil;
   
-  [super dealloc];
 }
 
 - (id)init
@@ -216,7 +169,7 @@ static mFWConnection *cmFWConnection = nil;
   
   self.mFWLargeImagesForBrowsingFromPreviews = [NSMutableArray array];
   
-  self.locationManager = [[[CLLocationManager alloc] init] autorelease];
+  self.locationManager = [[CLLocationManager alloc] init];
   self.locationManager.delegate = self;
   self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
   self.locationManager.distanceFilter = kCLDistanceFilterNone;
@@ -258,9 +211,9 @@ static mFWConnection *cmFWConnection = nil;
   [request setValue:@"*/*" forHTTPHeaderField:@"Accept"];
 
   // create new URL request...
-  [[[mFWURLLoader alloc] initWithRequest:request
+  [[mFWURLLoader alloc] initWithRequest:request
                                  success:success_
-                                 failure:failure_] autorelease];
+                                 failure:failure_];
 }
 
 - (void)postMessageWithParentID:(NSString *)parentID
@@ -382,9 +335,9 @@ static mFWConnection *cmFWConnection = nil;
   
   
   // create new URL request...
-  [[[mFWURLLoader alloc] initWithRequest:request
+  [[mFWURLLoader alloc] initWithRequest:request
                                  success:success_
-                                 failure:failure_] autorelease];
+                                 failure:failure_];
 }
 
 
@@ -440,9 +393,9 @@ static mFWConnection *cmFWConnection = nil;
   
   
     // create new URL request...
-  [[[mFWURLLoader alloc] initWithRequest:request
+  [[mFWURLLoader alloc] initWithRequest:request
                                  success:success_
-                                 failure:failure_] autorelease];
+                                 failure:failure_];
   
 }
 
@@ -466,9 +419,9 @@ static mFWConnection *cmFWConnection = nil;
   [request setValue:@"*/*" forHTTPHeaderField:@"Accept"];
 
   // create new URL request...
-  [[[mFWURLLoader alloc] initWithRequest:request
+  [[mFWURLLoader alloc] initWithRequest:request
                                  success:success_
-                                 failure:failure_] autorelease];
+                                 failure:failure_];
 }
 
 - (void)getGalleryWithSuccess:(mFWURLLoaderSuccessBlock )success_
@@ -488,9 +441,9 @@ static mFWConnection *cmFWConnection = nil;
   [request setValue:@"*/*" forHTTPHeaderField:@"Accept"];
   
   // create new URL request...
-  [[[mFWURLLoader alloc] initWithRequest:request
+  [[mFWURLLoader alloc] initWithRequest:request
                                  success:success_
-                                 failure:failure_] autorelease];
+                                 failure:failure_];
 }
 
 - (void)registerUserWithParameters:(NSDictionary *)parameters
@@ -551,9 +504,9 @@ static mFWConnection *cmFWConnection = nil;
   [request setHTTPBody:postBody];
   
   // create new URL request...
-  [[[mFWURLLoader alloc] initWithRequest:request
+  [[mFWURLLoader alloc] initWithRequest:request
                                  success:success_
-                                 failure:failure_] autorelease];
+                                 failure:failure_];
 }
 
 - (void)loginWithEmail:(NSString *)email
@@ -605,9 +558,9 @@ static mFWConnection *cmFWConnection = nil;
   [request setHTTPBody:postBody];
   
   // create new URL request...
-  [[[mFWURLLoader alloc] initWithRequest:request
+  [[mFWURLLoader alloc] initWithRequest:request
                                  success:success_
-                                 failure:failure_] autorelease];
+                                 failure:failure_];
 }
 
 - (void)getMessagesInRadius:(NSString *)radius
@@ -631,9 +584,9 @@ static mFWConnection *cmFWConnection = nil;
   [request setValue:@"*/*" forHTTPHeaderField:@"Accept"];
   
   // create new URL request...
-  [[[mFWURLLoader alloc] initWithRequest:request
+  [[mFWURLLoader alloc] initWithRequest:request
                                  success:success_
-                                 failure:failure_] autorelease];
+                                 failure:failure_];
 }
 
 - (UIView *)showIndicatorWithCenter:(CGPoint)mCenter inView:(UIView *)mView
@@ -643,7 +596,7 @@ static mFWConnection *cmFWConnection = nil;
     [self hideIndicator];
     
     const CGSize spinnerSize = CGSizeMake( 100.f, 100.f);
-    self.spinnerView = [[[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, spinnerSize.width, spinnerSize.height)] autorelease];
+    self.spinnerView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, spinnerSize.width, spinnerSize.height)];
     self.spinnerView.alpha = 0.7f;
     self.spinnerView.backgroundColor = [UIColor blackColor];
     self.spinnerView.layer.cornerRadius = 6.0f;
@@ -651,8 +604,8 @@ static mFWConnection *cmFWConnection = nil;
     self.spinnerView.layer.borderWidth = 1.0f;
     self.spinnerView.layer.masksToBounds = YES;
     
-    self.spinner = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
-                                         UIActivityIndicatorViewStyleWhiteLarge] autorelease];
+    self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
+                                         UIActivityIndicatorViewStyleWhiteLarge];
     
     self.spinner.frame = CGRectMake(floorf(spinnerSize.width / 2.f - self.spinner.frame.size.width / 2.f),
                                     floorf(spinnerSize.height / 2.f - self.spinner.frame.size.height / 2.f),
@@ -717,7 +670,6 @@ static mFWConnection *cmFWConnection = nil;
     alertView.tag = kOpenLocationServicesAlertTag;
     
     [alertView show];
-    [alertView release];
   }
   else
   {
@@ -727,21 +679,20 @@ static mFWConnection *cmFWConnection = nil;
                                                   cancelButtonTitle:NSBundleLocalizedString(@"mFW_locationDisabledOkButtonTitle", nil )
                                                   otherButtonTitles:nil];
     [locationAlert show];
-    [locationAlert release];
   }
 }
 
 #pragma mark - UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-#ifdef __IPHONE_8_0
+if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
   if (alertView.tag == kOpenLocationServicesAlertTag && buttonIndex == 1)
   {
     // Send the user to the Settings for this app
     NSURL *settingsURL = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
     [[UIApplication sharedApplication] openURL:settingsURL];
   }
-#endif
+}
 }
 
 #pragma mark - Location
@@ -751,7 +702,7 @@ static mFWConnection *cmFWConnection = nil;
   CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
   
   BOOL enabled = ( [CLLocationManager locationServicesEnabled] &&
-                  (status == kCLAuthorizationStatusAuthorized ||
+                  (status == kCLAuthorizationStatusAuthorizedAlways ||
                    status == kCLAuthorizationStatusAuthorizedWhenInUse ||
                    status == kCLAuthorizationStatusAuthorizedAlways)
                   );

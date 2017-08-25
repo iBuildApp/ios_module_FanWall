@@ -18,7 +18,7 @@
 {
   UIBarButtonItem *backBarButton;
 }
-  @property(nonatomic, strong) UIWebView         *webView;
+  @property(nonatomic, strong) WKWebView         *webView;
   @property(nonatomic, strong) CLLocationManager *locationManager;
   @property(nonatomic, copy  ) NSString          *content;
   @property(nonatomic, strong) mFWConnection     *FWConnection;
@@ -49,15 +49,9 @@
 
 - (void)dealloc
 {
-  self.webView         = nil;
-  self.locationManager = nil;
-  self.content         = nil;
-  self.FWConnection    = nil;
   if(backBarButton != nil){
-    [backBarButton release];
     backBarButton = nil;
   }
-  [super dealloc];
 }
 
 #pragma mark -
@@ -69,14 +63,14 @@
   backBarButton = [[UIBarButtonItem alloc] init];
   backBarButton.title = self.navigationController.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"mFW_backToWallButtonTitle", @"Wall");
     
-  self.locationManager = [[[CLLocationManager alloc] init] autorelease];
+  self.locationManager = [[CLLocationManager alloc] init];
 	self.locationManager.delegate = self;
 	self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
   
   self.view.autoresizingMask = UIViewAutoresizingFlexibleHeight;
   self.view.autoresizesSubviews = YES;
   
-  self.webView = [[[UIWebView alloc] initWithFrame:self.view.bounds] autorelease];
+  self.webView = [[WKWebView alloc] initWithFrame:self.view.bounds];
   self.webView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 
   [self.view addSubview:self.webView];
@@ -178,35 +172,33 @@
   if ( [[functionName lowercaseString] isEqualToString:@"gotourl"] )
   {
     mWebVCViewController *webVC = [[mWebVCViewController alloc] init];
-    webVC.URL = [[[argument copy] autorelease] stringByReplacingOccurrencesOfString:@"\"" withString:@""];
-    webVC.title = [[[name copy] autorelease] stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+    webVC.URL = [[argument copy] stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+    webVC.title = [[name copy] stringByReplacingOccurrencesOfString:@"\"" withString:@""];
     
     webVC.scalable = YES;
     webVC.webView.contentMode = UIViewContentModeScaleAspectFit;
     [self.navigationController pushViewController:webVC animated:YES];
     
-    webVC.showTabBar = NO;      // hide tab bar in module
-    [webVC release];
   }
 }
 
-#pragma mark -
-#pragma mark UIWebViewDelegate
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+#pragma mark WKWebViewDelegate
+
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 {
-	NSString *requestString = [[request URL] absoluteString];
-  
-  NSArray *components = [requestString componentsSeparatedByString:@":"];
-  NSString *function = (NSString*)[components objectAtIndex:0];
-  NSString *argument;
-  NSString *name;
-  if ( [[function lowercaseString] isEqualToString:@"gotourl"] )
-  {
-    argument = [(NSString*)[components objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    name     = [(NSString*)[components objectAtIndex:2] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    [self handleCall:function argument:argument name:name];
-  }
-  return YES;
+    NSURLRequest *request = navigationAction.request;
+    NSString *requestString = [[request URL] absoluteString];
+    
+    NSArray *components = [requestString componentsSeparatedByString:@":"];
+    NSString *function = (NSString*)[components objectAtIndex:0];
+    NSString *argument;
+    NSString *name;
+    if ( [[function lowercaseString] isEqualToString:@"gotourl"] )
+    {
+        argument = [(NSString*)[components objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        name     = [(NSString*)[components objectAtIndex:2] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        [self handleCall:function argument:argument name:name];
+    }
 }
 
 #pragma mark -
@@ -301,7 +293,7 @@
   self.content = [self.content stringByReplacingOccurrencesOfString:@"__RePlAcE-Zoom__"
                                                          withString:[[self mapMetrixForPoints:self.mapPoints] objectForKey:@"mapZoom"]];
   
-  self.webView.delegate = self;
+  self.webView.navigationDelegate = self;
   
   [self.webView loadHTMLString:self.content baseURL:nil];
   
@@ -320,7 +312,7 @@
   return YES;
 }
 
-- (NSUInteger)supportedInterfaceOrientations
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
   return UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskPortraitUpsideDown;
 }

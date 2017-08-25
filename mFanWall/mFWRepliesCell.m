@@ -46,45 +46,6 @@
   return self;
 }
 
-- (void)dealloc
-{
-  if (_messageLabel)
-      [_messageLabel release];
-  
-  _messageLabel = nil;
-  
-  
-  if (_dateDiffLabel)
-    [_dateDiffLabel release];
-  
-  _dateDiffLabel = nil;
-  
-  
-  if (_phImageView)
-      [_phImageView release];
-  
-  _phImageView = nil;
-  
-  
-  if (_attachedImageView)
-    [_attachedImageView release];
-  
-  _attachedImageView = nil;
-  
-  
-  if (_commentsLabel)
-    [_commentsLabel release];
-  
-  _commentsLabel = nil;
-  
-  if (_separatorLine)
-    [_separatorLine release];
-  
-  _separatorLine = nil;
-  
-  
-  [super dealloc];
-}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {

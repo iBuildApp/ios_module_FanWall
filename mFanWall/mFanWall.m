@@ -21,7 +21,7 @@
 #import "mFWPhotosVC.h"
 #import "appconfig.h"
 
-#import "Reachability.h"
+#import "reachability.h"
 
 #import "EGORefreshTableHeaderView.h"
 #import <Smartling.i18n/SLLocalization.h>
@@ -157,13 +157,13 @@ typedef enum {
 /**
  *  Toolbar for entering post message
  */
-@property (nonatomic, retain) mFWInputToolbar *inputToolbar;
+@property (nonatomic, strong) mFWInputToolbar *inputToolbar;
 
-@property (nonatomic, retain) mFWImageProvider *imageProvider;
-@property (nonatomic, retain) NSString *pageTitle;
+@property (nonatomic, strong) mFWImageProvider *imageProvider;
+@property (nonatomic, strong) NSString *pageTitle;
 
 
-@property (nonatomic, retain) UIView *tabsBackground;
+@property (nonatomic, strong) UIView *tabsBackground;
 
 @property (nonatomic, strong) NSMutableSet *facebookLikedItems;
 @property (nonatomic, strong) NSMutableDictionary *facebookLikesForPosts;
@@ -276,7 +276,7 @@ wallIsEmpty;
     }
     
     if ( tmp.count )
-      [contentArray addObject:[[tmp copy] autorelease]];
+      [contentArray addObject:[tmp copy]];
     [tmp removeAllObjects];
     
     dataChild = dataChild->nextSibling;
@@ -418,65 +418,31 @@ wallIsEmpty;
 
 - (void)dealloc
 {
-  self.appID   = nil;
-  self.array   = nil;
-  self.wall    = nil;
-  self.gallery = nil;
-  self.pageContent = nil;
   //-----------------------
-  self.noMessagesLabel       = nil;
-  self.pageContent       = nil;
   //----------------------
-  self.firstPostID   = nil;
-  self.lastPostID    = nil;
-  self.postID        = nil;
   
-  self.s_posts  = nil;
-  self.s_images = nil;
   
-  self.mapButton        = nil;
-  self.photosButton     = nil;
-  self.mapIcon          = nil;
-  self.photosIcon       = nil;
   
-  self.FWConnection     = nil;
-  self.hostReachable    = nil;
   
-  [_fwSettings release];
-  _fwSettings = nil;
   
   if(dateFormatter != nil){
-    [dateFormatter release];
     dateFormatter = nil;
   }
   
   if(timeFormatter != nil){
-    [timeFormatter release];
     timeFormatter = nil;
   }
   
-  self.refreshHeaderView = nil;
-  self.imageProvider = nil;
-  self.pageTitle = nil;
   
-  self.tabsBackground = nil;
   
-  self.facebookLikedItems = nil;
-  self.facebookLikesForPosts = nil;
-  self.sharesCountForPosts = nil;
   
-  self.placeholderImage = nil;
   
-  self.facebookLikedItemsUDKey = nil;
-  self.facebookLikesForPostsUDKey = nil;
-  self.sharesCountForPostsUDKey = nil;
   
   aSha.delegate = nil;
   aSha.viewController = nil;
   
   [[NSNotificationCenter defaultCenter] removeObserver:self];
   
-  [super dealloc];
 }
 
 #pragma mark -
@@ -583,7 +549,7 @@ wallIsEmpty;
   downloadIndicatorCenter =  (CGPoint){self.view.bounds.size.width  / 2.0f, downloadIndicatorCenterY};
   
   
-  self.s_posts = [[[UD objectForKey:@"s_posts_recent"] mutableCopy] autorelease];
+  self.s_posts = [[UD objectForKey:@"s_posts_recent"] mutableCopy];
   
   self.firstPostID = @"0";
   self.lastPostID  = @"0";
@@ -636,14 +602,14 @@ wallIsEmpty;
 
 -(void)placeTabs
 {
-  self.tabsBackground = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, kButtonsBarHeight)] autorelease];
+  self.tabsBackground = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, kButtonsBarHeight)];
   _tabsBackground.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
   [self.view addSubview:_tabsBackground];
   
   float separatorOriginX = self.view.frame.size.width / 2;
   float separatorOriginY = _tabsBackground.frame.origin.y + kSeparatorPaddingInButtonsBar;
   
-  UIView *separator = [[[UIView alloc] initWithFrame:CGRectMake(separatorOriginX, separatorOriginY, kSeparatorWidth, kSeparatorHeight)] autorelease];
+  UIView *separator = [[UIView alloc] initWithFrame:CGRectMake(separatorOriginX, separatorOriginY, kSeparatorWidth, kSeparatorHeight)];
   separator.backgroundColor = kSeparatorColor;
   [_tabsBackground addSubview:separator];
   
@@ -661,7 +627,7 @@ wallIsEmpty;
                                                             tabsBackgroundSpacerHeight / 2);
   
   //Because on iOS 7+ we have already 0.5 pt semi-transparent thin spacer
-  UIView *tabsBackgroundTopSpacerUpperPart = [[[UIView alloc] initWithFrame:tabsBackgroundTopSpacerFrameUpperPart] autorelease];
+  UIView *tabsBackgroundTopSpacerUpperPart = [[UIView alloc] initWithFrame:tabsBackgroundTopSpacerFrameUpperPart];
   tabsBackgroundTopSpacerUpperPart.backgroundColor = [tabsBackgroundBottomSpacerColor colorWithAlphaComponent:0.05f];
   [_tabsBackground addSubview:tabsBackgroundTopSpacerUpperPart];
   
@@ -671,7 +637,7 @@ wallIsEmpty;
                                                             tabsBackgroundSpacerHeight / 2);
   
   
-  UIView *tabsBackgroundTopSpacerLowerPart = [[[UIView alloc] initWithFrame:tabsBackgroundTopSpacerFrameLowerPart] autorelease];
+  UIView *tabsBackgroundTopSpacerLowerPart = [[UIView alloc] initWithFrame:tabsBackgroundTopSpacerFrameLowerPart];
   tabsBackgroundTopSpacerLowerPart.backgroundColor = tabsBackgroundBottomSpacerColor;
   [_tabsBackground addSubview:tabsBackgroundTopSpacerLowerPart];
   
@@ -680,7 +646,7 @@ wallIsEmpty;
                                                       self.view.bounds.size.width,
                                                       tabsBackgroundSpacerHeight);
   
-  UIView *tabsBackgroundBottomSpacer = [[[UIView alloc] initWithFrame:tabsBackgroundBottomSpacerFrame] autorelease];
+  UIView *tabsBackgroundBottomSpacer = [[UIView alloc] initWithFrame:tabsBackgroundBottomSpacerFrame];
   tabsBackgroundBottomSpacer.backgroundColor = tabsBackgroundBottomSpacerColor;
   [_tabsBackground addSubview:tabsBackgroundBottomSpacer];
 }
@@ -696,9 +662,9 @@ wallIsEmpty;
 
 -(void)restoreFBSharingCounts
 {
-  self.facebookLikesForPosts = [[[UD objectForKey:self.facebookLikesForPostsUDKey] mutableCopy] autorelease];
-  self.facebookLikedItems = [[[UD objectForKey:self.facebookLikedItemsUDKey] mutableCopy] autorelease];
-  self.sharesCountForPosts = [[[UD objectForKey:self.sharesCountForPostsUDKey] mutableCopy] autorelease];
+  self.facebookLikesForPosts = [[UD objectForKey:self.facebookLikesForPostsUDKey] mutableCopy];
+  self.facebookLikedItems = [[UD objectForKey:self.facebookLikedItemsUDKey] mutableCopy];
+  self.sharesCountForPosts = [[UD objectForKey:self.sharesCountForPostsUDKey] mutableCopy];
   
   if(!self.facebookLikedItems){
     self.facebookLikedItems = [NSMutableSet set];
@@ -720,7 +686,7 @@ wallIsEmpty;
   CGFloat buttonWidth = (tabsBackground.bounds.size.width) / 2 - kSeparatorWidth;
   button.frame = CGRectMake(originX, 0.0f, buttonWidth, kButtonsBarHeight);
   ////
-  UIImageView *iconView = [[[UIImageView alloc] initWithImage:icon] autorelease];
+  UIImageView *iconView = [[UIImageView alloc] initWithImage:icon];
   iconView.frame = CGRectMake(0, 0, icon.size.width, kIconWidthAndHeight);
   iconView.contentMode = UIViewContentModeScaleAspectFit;
   
@@ -748,7 +714,7 @@ wallIsEmpty;
   buttonContentFrame.size.width = buttonLabel.frame.origin.x + buttonLabel.bounds.size.width;
   
   
-  UIView *buttonContentView = [[[UIView alloc] initWithFrame:buttonContentFrame] autorelease];
+  UIView *buttonContentView = [[UIView alloc] initWithFrame:buttonContentFrame];
   [buttonContentView addSubview:iconView];
   buttonLabel.backgroundColor = [UIColor clearColor];
   [buttonContentView addSubview:buttonLabel];
@@ -825,7 +791,7 @@ wallIsEmpty;
         }
       }
       
-      [UD setObject:[[self.fwSettings.posts copy] autorelease]
+      [UD setObject:[self.fwSettings.posts copy]
              forKey:@"s_posts_recent"];
       
       self.wallIsEmpty = NO;
@@ -885,7 +851,7 @@ wallIsEmpty;
         
         [self.fwSettings.posts addObjectsFromArray:mutableOlderPosts];
         
-        [UD setObject:[[self.fwSettings.posts copy] autorelease]
+        [UD setObject:[self.fwSettings.posts copy]
                forKey:@"s_posts_recent"];
         
         self.wallIsEmpty = NO;
@@ -945,7 +911,7 @@ wallIsEmpty;
       
       self.fwSettings.posts = mutablePosts;
       
-      [UD setObject:[[self.fwSettings.posts copy] autorelease]
+      [UD setObject:[self.fwSettings.posts copy]
              forKey:@"s_posts_recent"];
       
       self.wallIsEmpty = NO;
@@ -972,7 +938,7 @@ wallIsEmpty;
     
     if ( self.hostStatus == NotReachable )
     {
-      self.fwSettings.posts = [[self.s_posts mutableCopy] autorelease];
+      self.fwSettings.posts = [self.s_posts mutableCopy];
     }
     else
     {
@@ -1024,21 +990,21 @@ wallIsEmpty;
   //Max width for text and image in post
   if ( cell == nil )
   {
-    cell = [[[mFWPostCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+    cell = [[mFWPostCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor = [UIColor clearColor];
     
-    cell.postContentsSpacer = [[[UIView alloc] init] autorelease];
+    cell.postContentsSpacer = [[UIView alloc] init];
     cell.postContentsSpacer.backgroundColor = kHorizontalSpacerColor;
     
-    cell.postMessageLabel = [[[UILabel alloc] init] autorelease];
+    cell.postMessageLabel = [[UILabel alloc] init];
     cell.postMessageLabel.backgroundColor = [UIColor clearColor];
     cell.postMessageLabel.numberOfLines = 0;
     cell.postMessageLabel.font = [UIFont systemFontOfSize:kPostTextSize];
     cell.postMessageLabel.textColor = kPostTextColor;
     
     
-    cell.attachedThumbnailImageViewContainer = [[[UIView alloc] init] autorelease];
+    cell.attachedThumbnailImageViewContainer = [[UIView alloc] init];
     cell.attachedThumbnailImageViewContainer.backgroundColor = [UIColor whiteColor];
     cell.attachedThumbnailImageViewContainer.layer.shadowOffset = CGSizeMake(0.5f, 0.5f);
     cell.attachedThumbnailImageViewContainer.layer.shadowColor = [[UIColor blackColor] CGColor];
@@ -1046,7 +1012,7 @@ wallIsEmpty;
     cell.attachedThumbnailImageViewContainer.layer.shadowRadius = 2.0f;
     cell.attachedThumbnailImageViewContainer.userInteractionEnabled = YES;
       
-    cell.attachedThumbnailImageView = [[[UIImageView alloc] init] autorelease];
+    cell.attachedThumbnailImageView = [[UIImageView alloc] init];
       
     cell.attachedThumbnailImageView.contentMode = UIViewContentModeScaleAspectFill;
     cell.attachedThumbnailImageView.clipsToBounds = YES;
@@ -1056,14 +1022,13 @@ wallIsEmpty;
     UITapGestureRecognizer *avatarImageTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showUserProfile:)];
     avatarImageTap.delegate = self;
     [cell.avatarImageView addGestureRecognizer:avatarImageTap];
-    [avatarImageTap release];
       
     
-    cell.commentsSpacer = [[[UIView alloc] init] autorelease];
+    cell.commentsSpacer = [[UIView alloc] init];
     cell.commentsSpacer.backgroundColor = kHorizontalSpacerColor;
     
     CGRect socialButtonsPaneFrame = (CGRect){kMarginFromScreenEdges, 0.0f, kPostCellWidth - 1.0f, kSocialButtonHeight};
-    cell.socialButtonsPane = [[[UIView alloc] initWithFrame:socialButtonsPaneFrame] autorelease];
+    cell.socialButtonsPane = [[UIView alloc] initWithFrame:socialButtonsPaneFrame];
     
     CGFloat socialButtonWidth = (NSInteger)((kPostCellWidth - 1.0f) / 3);
     
@@ -1073,10 +1038,10 @@ wallIsEmpty;
     
     cell.commentsButton = [self addSocialButtonWithFrame:commentsButtonFrame andImageNamed:resourceFromBundle(@"mFW_comments") toPostCell:cell];
     
-    UIView *likesAndSharesPlaceholder = [[[UIView alloc] initWithFrame:(CGRect){socialButtonWidth, 0.0f, kPostCellWidth - socialButtonWidth, kSocialButtonHeight}] autorelease];
+    UIView *likesAndSharesPlaceholder = [[UIView alloc] initWithFrame:(CGRect){socialButtonWidth, 0.0f, kPostCellWidth - socialButtonWidth, kSocialButtonHeight}];
     likesAndSharesPlaceholder.userInteractionEnabled = YES;
     //do not go to comments on tap on the rest of social pane if neither likes nor shares button present
-    UITapGestureRecognizer *doNothingRecognizer = [[[UITapGestureRecognizer alloc] initWithTarget:0 action:0] autorelease];
+    UITapGestureRecognizer *doNothingRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:0 action:0];
     [likesAndSharesPlaceholder addGestureRecognizer:doNothingRecognizer];
     [cell.socialButtonsPane addSubview:likesAndSharesPlaceholder];
     
@@ -1087,16 +1052,16 @@ wallIsEmpty;
     cell.likesButton.socialImageView.highlighted = NO;
       
       
-    UITapGestureRecognizer *likesTapRecognizer = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(likesButtonTapped:)] autorelease];
+    UITapGestureRecognizer *likesTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(likesButtonTapped:)];
     [cell.likesButton addGestureRecognizer:likesTapRecognizer];
     
     cell.sharesButton = [self addSocialButtonWithFrame1:sharesButtonFrame andImageNamed:resourceFromBundle(@"mFW_more") toPostCell:cell];
     cell.sharesButton.socialActionsCount = 0;
     
-    UITapGestureRecognizer *sharesTapRecognizer = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sharesButtonTapped:)] autorelease];
+    UITapGestureRecognizer *sharesTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sharesButtonTapped:)];
     [cell.sharesButton addGestureRecognizer:sharesTapRecognizer];
     
-    cell.backgroundRoundedRectangle = [[[UIView alloc] init] autorelease];
+    cell.backgroundRoundedRectangle = [[UIView alloc] init];
     
     [cell.contentView addSubview:cell.postMessageLabel];
     [cell.contentView addSubview:cell.attachedThumbnailImageViewContainer];
@@ -1261,7 +1226,6 @@ wallIsEmpty;
     attachedImageTap.delegate = self;
     [cell.attachedThumbnailImageViewContainer addGestureRecognizer:attachedImageTap];
     
-    [attachedImageTap release];
   } else {
     [cell.attachedThumbnailImageViewContainer setHidden:YES];
     cell.likesButton.hidden = YES;
@@ -1290,7 +1254,7 @@ wallIsEmpty;
   if(totalComments){
     cell.commentsButton.socialActionsCount = [totalComments intValue];
     
-    UITapGestureRecognizer *commentsTapRecognizer = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(commentsButtonTapped:)] autorelease];
+    UITapGestureRecognizer *commentsTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(commentsButtonTapped:)];
     [cell.commentsButton addGestureRecognizer:commentsTapRecognizer];
     
     [cell addGestureRecognizer:commentsTapRecognizer];
@@ -1330,7 +1294,6 @@ wallIsEmpty;
                                       nslineBreakMode:messageLabel.lineBreakMode];
     height += labelSize.height;
     
-    [messageLabel release];
   }
   
   if([[currentPost objectForKey:@"thumbs"] count]){
@@ -1366,7 +1329,7 @@ wallIsEmpty;
   NSString *postId = self.fwSettings.posts[swipedIndexPath.row][@"post_id"];
   objc_setAssociatedObject(photoURL, key, postId, OBJC_ASSOCIATION_RETAIN);
   
-  NSMutableArray *photos = [[[NSMutableArray alloc] init] autorelease];
+  NSMutableArray *photos = [[NSMutableArray alloc] init];
   MWPhoto *photo = [MWPhoto photoWithURL:photoURL];
   photo.caption = [NSBundleLocalizedString(@"mFW_postedByPhotoCaption", @"Posted by ") stringByAppendingString:[[self.fwSettings.posts objectAtIndex:swipedIndexPath.row] objectForKey:@"user_name"]];
   photo.description = [[self.fwSettings.posts objectAtIndex:swipedIndexPath.row] objectForKey:@"text"];
@@ -1375,7 +1338,7 @@ wallIsEmpty;
   
   self.fwSettings.photos = photos;
   
-  mFWPhotoBrowser *browser = [[[mFWPhotoBrowser alloc] initWithDelegate:self] autorelease];
+  mFWPhotoBrowser *browser = [[mFWPhotoBrowser alloc] initWithDelegate:self];
   browser.displayActionButton = YES;
   browser.bSavePicture        = YES;
   browser.leftBarButtonCaption = NSBundleLocalizedString(@"mFW_backToWallButtonTitle", @"Wall");
@@ -1390,7 +1353,7 @@ wallIsEmpty;
   
   NSIndexPath *swipedIndexPath = [self.wall indexPathForRowAtPoint:[recognizer locationInView:self.wall]];
   
-  mFWProfile *mFWProfileView = [[[mFWProfile alloc] init] autorelease];
+  mFWProfile *mFWProfileView = [[mFWProfile alloc] init];
   
   mFWProfileView.avatarURL   = [[self.fwSettings.posts objectAtIndex:swipedIndexPath.row] objectForKey:@"user_avatar"];
   mFWProfileView.userName    = [[self.fwSettings.posts objectAtIndex:swipedIndexPath.row] objectForKey:@"user_name"];
@@ -1445,10 +1408,10 @@ wallIsEmpty;
   
   if ( self.FWConnection.requiresRequest )
   {
-    self.pageContent = [[[UIView alloc] initWithFrame:CGRectMake(0.0f,
+    self.pageContent = [[UIView alloc] initWithFrame:CGRectMake(0.0f,
                                                                  kButtonsBarHeight +kHorizontalSpacerHeight,
                                                                  self.view.frame.size.width,
-                                                                 self.view.frame.size.height - kButtonsBarHeight)] autorelease];
+                                                                 self.view.frame.size.height - kButtonsBarHeight)];
     self.pageContent.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     self.pageContent.backgroundColor = self.FWConnection.mFWColorOfBackground;
     [self.view addSubview:self.pageContent];
@@ -1513,7 +1476,7 @@ wallIsEmpty;
     
     if ( hostStatus == NotReachable )
     {
-      self.fwSettings.posts = [[self.s_posts mutableCopy] autorelease];
+      self.fwSettings.posts = [self.s_posts mutableCopy];
     }
     else
     {
@@ -1541,11 +1504,11 @@ wallIsEmpty;
 {
   onLoadingView = NO;
   
-  mFWMap *fwMap = [[[mFWMap alloc] init] autorelease];
+  mFWMap *fwMap = [[mFWMap alloc] init];
 
   if ( self.fwSettings.posts.count )
   {
-    NSMutableDictionary  *pin = [[[NSMutableDictionary alloc] init] autorelease];
+    NSMutableDictionary  *pin = [[NSMutableDictionary alloc] init];
     
     for ( int i = 0; i < self.fwSettings.posts.count; i++ )
     {
@@ -1577,7 +1540,7 @@ wallIsEmpty;
           aURL = @"";
         
         [pin setObject:aURL forKey:@"description"];
-        [fwMap.mapPoints addObject:[[pin copy] autorelease]];
+        [fwMap.mapPoints addObject:[pin copy]];
         [pin removeAllObjects];
       }
     }
@@ -1588,7 +1551,7 @@ wallIsEmpty;
 
 - (void)photosButtonClicked
 {
-  mFWPhotosViewController *phohosVC = [[[mFWPhotosViewController alloc] init] autorelease];
+  mFWPhotosViewController *phohosVC = [[mFWPhotosViewController alloc] init];
   phohosVC.FWConnection = self.FWConnection;
   phohosVC.fwSettings = self.fwSettings;
 
@@ -1616,7 +1579,7 @@ wallIsEmpty;
   
   if ( cell == nil )
   {
-    cell = [[[NRGridViewCell alloc] initWithReuseIdentifier:MyCellIdentifier] autorelease];
+    cell = [[NRGridViewCell alloc] initWithReuseIdentifier:MyCellIdentifier];
     cell.backgroundColor = [UIColor clearColor];
   }
   cell.imageView.frame = CGRectMake(10, 10,
@@ -1636,7 +1599,6 @@ wallIsEmpty;
                           success:fadeInBlock
                           failure:nil];
   
-  [fadeInBlock release];
   
   return cell;
 }
@@ -1649,7 +1611,7 @@ wallIsEmpty;
   
   self.FWConnection.activeImage = indexPath;
   
-  MWPhotoBrowser *browser = [[[MWPhotoBrowser alloc] initWithDelegate:self] autorelease];
+  MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
   browser.displayActionButton  = YES;
   browser.bSavePicture         = YES;
   browser.leftBarButtonCaption = NSBundleLocalizedString(@"mFW_backToPhotosButtonTitle", @"Photos");
@@ -1706,11 +1668,11 @@ wallIsEmpty;
     
     if (showAlert)
     {
-      UIAlertView *msg = [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"general_cellularDataTurnedOff",@"Cellular Data is Turned off")
+      UIAlertView *msg = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"general_cellularDataTurnedOff",@"Cellular Data is Turned off")
                                                      message:NSLocalizedString(@"general_cellularDataTurnOnMessage",@"Turn on cellular data or use Wi-Fi to access data")
                                                     delegate:nil
                                            cancelButtonTitle:NSLocalizedString(@"general_defaultButtonTitleOK",@"OK")
-                                           otherButtonTitles:nil] autorelease];
+                                           otherButtonTitles:nil];
       [msg show];
     }
     
@@ -1769,7 +1731,7 @@ wallIsEmpty;
   NSInteger finishRow = startRow + length;
   
   for(NSInteger index = startRow; index < finishRow; index++){
-    [indexPathsToInsert addObject:[[NSIndexPath indexPathForRow:index inSection:0] retain]];
+    [indexPathsToInsert addObject:[NSIndexPath indexPathForRow:index inSection:0]];
   }
   [self.wall beginUpdates];
   [self.wall insertRowsAtIndexPaths:indexPathsToInsert withRowAnimation:animation];
@@ -1866,11 +1828,11 @@ wallIsEmpty;
 {
   CGFloat wallHeight = self.pageContent.frame.size.height;
   
-  self.wall = [[[UITableView alloc] initWithFrame:CGRectMake(0.0f,
+  self.wall = [[UITableView alloc] initWithFrame:CGRectMake(0.0f,
                                                              0.0f,
                                                              self.pageContent.frame.size.width,
                                                              wallHeight)
-                                            style:UITableViewStylePlain] autorelease];
+                                            style:UITableViewStylePlain];
   
   if(canEdit){
     UIEdgeInsets pulledUpInsets = self.wall.contentInset;
@@ -1891,10 +1853,10 @@ wallIsEmpty;
   
   // EGORefreshTableHeaderView initialization
   self.reloading = NO;
-  self.refreshHeaderView = [[[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(kMarginFromScreenEdges,
+  self.refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(kMarginFromScreenEdges,
                                                                                         0.0f - kRefreshHeaderViewHeight - kSpaceBetweenPostCells,
                                                                                         self.wall.bounds.size.width - 2 * kMarginFromScreenEdges,
-                                                                                        kRefreshHeaderViewHeight)] autorelease];
+                                                                                        kRefreshHeaderViewHeight)];
   self.refreshHeaderView.layer.cornerRadius = kBackgroundRoundedRectangleCornerRadius;
   
   self.refreshHeaderView.delegate = self;
@@ -1905,7 +1867,6 @@ wallIsEmpty;
   
   UITapGestureRecognizer *keyboardHider = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
   [self.wall addGestureRecognizer:keyboardHider];
-  [keyboardHider release];
 }
 
 #pragma mark - inputToolbar
@@ -1922,7 +1883,7 @@ wallIsEmpty;
   
   CGRect inputToolbarFrame = CGRectMake(0.0f, self.view.frame.size.height - kInputToolbarInitialHeight, self.view.frame.size.width,  kInputToolbarInitialHeight);
   
-  self.inputToolbar = [[[mFWInputToolbar alloc] initWithFrame:inputToolbarFrame andManagingController:self] autorelease];
+  self.inputToolbar = [[mFWInputToolbar alloc] initWithFrame:inputToolbarFrame andManagingController:self];
   self.inputToolbar.backgroundColor = kInputToolBarColor;
   
   self.inputToolbar.inputToolbarDelegate = self;
@@ -1998,22 +1959,19 @@ wallIsEmpty;
   loginVC.appID = self.FWConnection.mFWAppID;
   loginVC.moduleID = self.FWConnection.mFWModuleID;
   
-  UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:loginVC] autorelease];
+  UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:loginVC];
   navController.modalPresentationStyle = UIModalPresentationFormSheet;
   
   navController.navigationBar.barStyle = self.navigationController.navigationBar.barStyle;
   navController.navigationBar.translucent = self.navigationController.navigationBar.translucent;
   navController.navigationBar.tintColor = self.navigationController.navigationBar.tintColor;
   
-#ifdef __IPHONE_7_0
   if ([[[UIDevice currentDevice] systemVersion] compare:@"7.0" options:NSNumericSearch] != NSOrderedAscending)
     navController.navigationBar.barTintColor = self.navigationController.navigationBar.barTintColor;
   navController.navigationBar.titleTextAttributes = self.navigationController.navigationBar.titleTextAttributes;
-#endif
   
   [self.navigationController presentViewController:navController animated:YES completion:nil];
   
-  [loginVC release];
 }
 
 #pragma mark - Keyboard notifications
@@ -2083,10 +2041,8 @@ wallIsEmpty;
   UITapGestureRecognizer *maskViewTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
   maskViewTap.delegate = self;
   [maskView addGestureRecognizer:maskViewTap];
-  [maskViewTap release];
   
   [self.view insertSubview:maskView belowSubview:self.inputToolbar];
-  [maskView release];
 }
 
 - (void)hideKeyboard
@@ -2106,11 +2062,11 @@ wallIsEmpty;
   {
     if ( [[response objectForKey:@"error"] length] )
     {
-      [[[[UIAlertView alloc] initWithTitle:@""
+      [[[UIAlertView alloc] initWithTitle:@""
                                    message:NSBundleLocalizedString(@"mFW_postMessageFailedAlertMessage", @"Sending failed. Please try again")
                                   delegate:self
                          cancelButtonTitle:NSBundleLocalizedString(@"mFW_postMessageFailedAlertOkButtonTitle", @"OK")
-                         otherButtonTitles:nil] autorelease] show];
+                         otherButtonTitles:nil] show];
     } else {
       self.FWConnection.afterPost = YES;
       self.FWConnection.afterReply = YES;
@@ -2178,8 +2134,8 @@ wallIsEmpty;
 -(void)showNoMessagesLabel
 {
   if(!self.noMessagesLabel){
-    self.noMessagesLabel = [[[UILabel alloc] initWithFrame:
-                             CGRectZero] autorelease];
+    self.noMessagesLabel = [[UILabel alloc] initWithFrame:
+                             CGRectZero];
     self.noMessagesLabel.backgroundColor = [UIColor clearColor];
     self.noMessagesLabel.textAlignment   = NSTextAlignmentCenter;
     self.noMessagesLabel.textColor       = self.FWConnection.mFWColorOfText;
@@ -2216,14 +2172,14 @@ wallIsEmpty;
   
   if (self.hostStatus == NotReachable)
   {
-    self.fwSettings.posts = [[self.s_posts mutableCopy] autorelease];
+    self.fwSettings.posts = [self.s_posts mutableCopy];
     [self didLoadPostsForRange:NSMakeRange(0, 0) strategy:ReloadExistingPosts];
   }
   else
   {
     NSUInteger countToLoad = [self.fwSettings.posts count];
     
-    NSString *startPostId = [[self.firstPostID copy] autorelease];
+    NSString *startPostId = [self.firstPostID copy];
     
     //REFRESH WALL
     if(![startPostId isEqualToString:@"0"])
@@ -2297,7 +2253,7 @@ wallIsEmpty;
       
       [self requestLikesAndShares];
       
-      [UD setObject:[[self.fwSettings.posts copy] autorelease]
+      [UD setObject:[self.fwSettings.posts copy]
              forKey:@"s_posts_recent"];
       
       
@@ -2328,7 +2284,7 @@ wallIsEmpty;
 
 -(mFWSocialButton *)addSocialButtonWithFrame:(CGRect)frame andImageNamed:(NSString *)imageName toPostCell:(mFWPostCell *)cell
 {
-  mFWSocialButton *socialButton = [[[mFWSocialButton alloc] initWithFrame:frame] autorelease];
+  mFWSocialButton *socialButton = [[mFWSocialButton alloc] initWithFrame:frame];
   socialButton.socialImage = [UIImage imageNamed:imageName];
   [cell.socialButtonsPane addSubview:socialButton];
   
@@ -2337,7 +2293,7 @@ wallIsEmpty;
 
 -(mFWSocialButtonWithoutLikes *)addSocialButtonWithFrame1:(CGRect)frame andImageNamed:(NSString *)imageName toPostCell:(mFWPostCell *)cell
 {
-  mFWSocialButtonWithoutLikes *socialButton = [[[mFWSocialButtonWithoutLikes alloc] initWithFrame:frame] autorelease];
+  mFWSocialButtonWithoutLikes *socialButton = [[mFWSocialButtonWithoutLikes alloc] initWithFrame:frame];
   socialButton.socialImage = [UIImage imageNamed:imageName];
   [cell.socialButtonsPane addSubview:socialButton];
   
@@ -2362,7 +2318,6 @@ wallIsEmpty;
   aSha.delegate = self;
   
   [self.navigationController pushViewController:mFWRepliesVC animated:YES];
-  [mFWRepliesVC release];
 }
 
 - (void)likesButtonTapped:(UIGestureRecognizer *)recognizer
@@ -2394,13 +2349,13 @@ wallIsEmpty;
 - (void)showSharingActionSheet
 {
   [self getScreenshot];
-  UIActionSheet *actionSheet = [[[UIActionSheet alloc] initWithTitle:nil
+  UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                             delegate:self
                                                    cancelButtonTitle:NSLocalizedString(@"general_sharingNoThanksButtonTitle", @"No Thanks")
                                               destructiveButtonTitle:nil
                                                    otherButtonTitles:NSLocalizedString(@"general_sharingTwitterButtonTitle", @"Twitter"),
                                  NSLocalizedString(@"general_sharingFacebookButtonTitle", @"Facebook"),NSLocalizedString(@"mFW_flagContent", @"Flag content"),
-                                 nil] autorelease];
+                                 nil];
   
   actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
   [actionSheet showFromToolbar:self.navigationController.toolbar];
@@ -2499,7 +2454,6 @@ returningResponse:nil];
                                                            cancelButtonTitle:nil
                                                            otherButtonTitles:@"OK", nil];
                      [alert show];
-                     [alert release];
                    }];
 }
 
@@ -2719,7 +2673,7 @@ returningResponse:nil];
 - (void)didLoadFacebookLikedURLs:(NSMutableSet *)likedItems error:(NSError *)error
 {
   if(!error){
-    self.facebookLikedItems = [[likedItems mutableCopy] autorelease];
+    self.facebookLikedItems = [likedItems mutableCopy];
     
     [UD setObject:self.facebookLikedItems.allObjects forKey:self.facebookLikedItemsUDKey];
     
@@ -3009,7 +2963,7 @@ returningResponse:nil];
     return result;
   }];
   
-  return [[sortedPosts mutableCopy] autorelease];
+  return [sortedPosts mutableCopy];
 }
 
 @end

@@ -123,7 +123,7 @@ extern NSString *const kFWMessagePostImagesKey;
 /**
  * Object that acts as a delegate for actions, triggered by the toolbar.
  */
-@property (nonatomic, assign) id<mFWInputToolbarDelegate> inputToolbarDelegate;
+@property (nonatomic, weak) id<mFWInputToolbarDelegate> inputToolbarDelegate;
 
 /**
  * "Host" controller to present an image picking dialogue.

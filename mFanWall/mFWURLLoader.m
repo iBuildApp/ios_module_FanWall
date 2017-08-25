@@ -10,7 +10,7 @@
  ****************************************************************************/
 
 #import "mFWURLLoader.h"
-#import "SBJSON.h"
+#import "SBJson.h"
 
 @interface mFWURLLoader()
   @property (nonatomic, strong) NSURLConnection          *connection;
@@ -67,8 +67,8 @@
                  success:(mFWURLLoaderSuccessBlock )success_
                  failure:(mFWURLLoaderFailureBlock )failure_
 {
-  NSURLConnection *con = [[[NSURLConnection alloc] initWithRequest:request
-                                                          delegate:self] autorelease];
+  NSURLConnection *con = [[NSURLConnection alloc] initWithRequest:request
+                                                          delegate:self];
   if ( con )
   {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
@@ -89,7 +89,6 @@
 -(void)dealloc
 {
   [self cancel];
-  [super dealloc];
 }
 
 #pragma mark NSURLConnectionDelegate
@@ -113,7 +112,6 @@
     {
       SBJsonParser *jsonParser = [[SBJsonParser alloc] init];
       serverResponse = [jsonParser objectWithData:self.receivedData];
-      [jsonParser release];
     }
     self.successBlock( self.receivedData, serverResponse );
   }

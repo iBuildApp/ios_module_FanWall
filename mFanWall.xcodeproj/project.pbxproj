@@ -67,11 +67,11 @@
 		77466D8C165BAE3900CB1E5F /* mFWPostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77466D8A165BAE3800CB1E5F /* mFWPostCell.m */; };
 		77514822165F5F10002B91E6 /* mFWRepliesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77514820165F5F10002B91E6 /* mFWRepliesCell.m */; };
 		77EB1AD6166BB2D3004E0EB3 /* mFWMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EB1AD4166BB2D3004E0EB3 /* mFWMap.m */; };
-		A91A4C021BD4C7E0006D76C6 /* mFWSocialButtonWithoutLikes.m in Sources */ = {isa = PBXBuildFile; fileRef = A91A4C011BD4C7E0006D76C6 /* mFWSocialButtonWithoutLikes.m */; settings = {ASSET_TAGS = (); }; };
+		A91A4C021BD4C7E0006D76C6 /* mFWSocialButtonWithoutLikes.m in Sources */ = {isa = PBXBuildFile; fileRef = A91A4C011BD4C7E0006D76C6 /* mFWSocialButtonWithoutLikes.m */; };
 		A975470319BDDB4A0002ED2F /* mFWPhotosVC.m in Sources */ = {isa = PBXBuildFile; fileRef = A975470219BDDB4A0002ED2F /* mFWPhotosVC.m */; };
 		A975470619BDDDB80002ED2F /* mFWSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = A975470519BDDDB80002ED2F /* mFWSettings.m */; };
-		A9F2180B1BD14045000354AD /* mFW_more.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F218091BD14045000354AD /* mFW_more.png */; settings = {ASSET_TAGS = (); }; };
-		A9F2180C1BD14045000354AD /* mFW_more@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F2180A1BD14045000354AD /* mFW_more@2x.png */; settings = {ASSET_TAGS = (); }; };
+		A9F2180B1BD14045000354AD /* mFW_more.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F218091BD14045000354AD /* mFW_more.png */; };
+		A9F2180C1BD14045000354AD /* mFW_more@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F2180A1BD14045000354AD /* mFW_more@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -408,7 +408,6 @@
 			buildPhases = (
 				59705420159DB8080003BA92 /* Sources */,
 				59705421159DB8080003BA92 /* Frameworks */,
-				777704D215A59872005E1A33 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -427,7 +426,6 @@
 				59804D5216CCDB3B006D7A67 /* Sources */,
 				59804D5316CCDB3B006D7A67 /* Frameworks */,
 				59804D5416CCDB3B006D7A67 /* Resources */,
-				59804E2016CD08D1006D7A67 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -444,7 +442,7 @@
 		5970541B159DB8080003BA92 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0900;
 			};
 			buildConfigurationList = 5970541E159DB8080003BA92 /* Build configuration list for PBXProject "mFanWall" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -525,35 +523,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		59804E2016CD08D1006D7A67 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-			shellPath = /bin/sh;
-			shellScript = "cp -fR \"$CODESIGNING_FOLDER_PATH\" `echo $PROJECT_DIR | sed 's/appbuilder/appbuilder_server/g'`";
-		};
-		777704D215A59872005E1A33 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-			shellPath = /bin/sh;
-			shellScript = "cp -fR \"$CODESIGNING_FOLDER_PATH\" `echo $PROJECT_DIR | sed 's/appbuilder/appbuilder_server/g'`";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		59705420159DB8080003BA92 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -624,15 +593,29 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = NO;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
@@ -643,8 +626,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = NO;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				ONLY_ACTIVE_ARCH = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = NO;
 				VALID_ARCHS = "armv7 arm64";
@@ -655,14 +638,27 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = NO;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -671,7 +667,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = NO;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = NO;
 				VALID_ARCHS = "armv7 arm64";
@@ -681,6 +677,7 @@
 		59705432159DB8080003BA92 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				DSTROOT = /tmp/mFanWall.dst;
 				EXECUTABLE_PREFIX = "";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -693,12 +690,12 @@
 					../../libs/,
 					../../libs/FHSTwitterEngine,
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SEPARATE_STRIP = NO;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "../../Classes/tools/ ../../libs/tbxml/tbxml-headers/ ../../Classes/network ../../Classes/common ../../libs/SBJson/src/main/objc/ ../../Classes ../../plugins/mWebVC/mWebVC/ ../../plugins/mFanWall/mFanWall/ ../../libs/nrGridView/ ../../libs/MWPhotoBrowser ../../appbuilder";
+				USER_HEADER_SEARCH_PATHS = "../../Classes/tools/ ../../libs/tbxml/tbxml-headers/ ../../Classes/network ../../Classes/common ../../libs/SBJson/src/main/objc/ ../../Classes ../../plugins/mWebVC/mWebVC/ ../../plugins/mFanWall/mFanWall/ ../../libs/nrGridView/ ../../libs/MWPhotoBrowser ../../appbuilder ../../Classes/customControls/iphone/";
 				VALID_ARCHS = "armv7 arm64";
 			};
 			name = Debug;
@@ -706,6 +703,7 @@
 		59705433159DB8080003BA92 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				DSTROOT = /tmp/mFanWall.dst;
 				EXECUTABLE_PREFIX = "";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -718,12 +716,12 @@
 					../../libs/,
 					../../libs/FHSTwitterEngine,
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SEPARATE_STRIP = NO;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "../../Classes/tools/ ../../libs/tbxml/tbxml-headers/ ../../Classes/network ../../Classes/common ../../libs/SBJson/src/main/objc/ ../../Classes ../../plugins/mWebVC/mWebVC/ ../../plugins/mFanWall/mFanWall/ ../../libs/nrGridView/ ../../libs/MWPhotoBrowser ../../appbuilder";
+				USER_HEADER_SEARCH_PATHS = "../../Classes/tools/ ../../libs/tbxml/tbxml-headers/ ../../Classes/network ../../Classes/common ../../libs/SBJson/src/main/objc/ ../../Classes ../../plugins/mWebVC/mWebVC/ ../../plugins/mFanWall/mFanWall/ ../../libs/nrGridView/ ../../libs/MWPhotoBrowser ../../appbuilder ../../Classes/customControls/iphone/";
 				VALID_ARCHS = "armv7 arm64";
 			};
 			name = Release;
@@ -750,6 +748,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				MACOSX_DEPLOYMENT_TARGET = "";
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "iBuildApp.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -776,6 +775,7 @@
 				INFOPLIST_FILE = "mFanWallResources/mFanWallResources-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				MACOSX_DEPLOYMENT_TARGET = "";
+				PRODUCT_BUNDLE_IDENTIFIER = "iBuildApp.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;

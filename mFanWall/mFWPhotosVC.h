@@ -26,12 +26,12 @@
 /**
  * Container for module essential data.
  */
-@property(nonatomic, assign) mFWSettings *fwSettings;
+@property(nonatomic, weak) mFWSettings *fwSettings;
 
 /**
  * Connection helper object.
  */
-@property(nonatomic, assign) mFWConnection *FWConnection;
+@property(nonatomic, weak) mFWConnection *FWConnection;
 
 /**
  *  Defines TabBar behavior

@@ -47,6 +47,6 @@
  */
 @property(nonatomic, copy  ) NSString *appID;
 
-@property (nonatomic, retain) UIImage *screenshotImage;
+@property (nonatomic, strong) UIImage *screenshotImage;
 
 @end

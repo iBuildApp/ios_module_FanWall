@@ -52,18 +52,6 @@
   return self;
 }
 
-- (void)dealloc
-{
-  self.avatarURL   = nil;
-  self.userName    = nil;
-  self.accountID   = nil;
-  self.accountType = nil;
-  self.dateString  = nil;
-  self.pCountText  = nil;
-  self.cCountText  = nil;
-  self.FWConnection = nil;
-  [super dealloc];
-}
 
 #pragma mark -
 #pragma mark view life cycle
@@ -111,7 +99,6 @@
   avatarImage.layer.masksToBounds = YES;
   
   [self.view addSubview:avatarImage];
-  [avatarImage release];
   
   UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(100.0f, 10.0f, 200.0f, 20.0f)];
   name.textAlignment   = NSTextAlignmentLeft;
@@ -120,7 +107,6 @@
   name.textColor       = self.FWConnection.mFWColorOfTextHeader;
   name.text            = self.userName;
   [self.view addSubview:name];
-  [name release];
   
   
   double dateDouble = self.dateString.doubleValue/1000;
@@ -141,7 +127,6 @@
   date.text = dateLabelText;
   
   [self.view addSubview:date];
-  [date release];
   
   CGFloat pCountOriginY = date.frame.origin.y + date.frame.size.height + 1.0f;
   UILabel *pCount = [[UILabel alloc] initWithFrame:CGRectMake(100.0f, pCountOriginY, 150.0f, 18.0f)];
@@ -152,7 +137,6 @@
   NSNumber *number = [NSNumber numberWithInteger:self.pCountText.integerValue];
   pCount.text = [NSString stringWithFormat:SLBundlePluralizedString(@"mFW_proflie_%@ posts", number, nil), number];
   [self.view addSubview:pCount];
-  [pCount release];
   
   
   CGFloat cCountOriginY = pCount.frame.origin.y + pCount.frame.size.height + 1.0f;
@@ -165,7 +149,6 @@
   cCount.text = [NSString stringWithFormat:SLBundlePluralizedString(@"mFW_proflie_%@ comments", number, nil), number];
   
   [self.view addSubview:cCount];
-  [cCount release];
   
   CGFloat profileButtonOriginY = cCount.frame.origin.y + cCount.frame.size.height;// + 2.0f;
   UIButton *profileButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -175,7 +158,7 @@
   [profileButton addTarget:self action:@selector(profileButtonClicked) forControlEvents:UIControlEventTouchUpInside];
   profileButton.titleLabel.font = [UIFont boldSystemFontOfSize:15.0f];
   [profileButton setContentHorizontalAlignment: UIControlContentHorizontalAlignmentLeft];
-  UIImage *profileIcon = [[[UIImage alloc] init] autorelease];
+  UIImage *profileIcon = [[UIImage alloc] init];
   if ( [self.accountType isEqualToString:@"facebook"] )
   {
     [profileButton setTitle:[@"      " stringByAppendingString:NSBundleLocalizedString(@"mFW_profileFacebookButtonTitle", @"Facebook")] forState:UIControlStateNormal];
@@ -202,7 +185,6 @@
                                      profileIcon.size.height);
   [profileButton addSubview:profileIconView];
   [self.view addSubview:profileButton];
-  [profileIconView release];
   
   [super viewDidLoad];
 }
@@ -231,9 +213,7 @@
     aURL = @"";
   
   mFWWeb.URL        = aURL;
-  mFWWeb.showTabBar = NO;
   [self.navigationController pushViewController:mFWWeb animated:YES];
-  [mFWWeb release];
 }
 
 #pragma mark autorotate handlers
@@ -247,7 +227,7 @@
   return YES;
 }
 
-- (NSUInteger)supportedInterfaceOrientations
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
   return UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskPortraitUpsideDown;
 }

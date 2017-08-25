@@ -36,7 +36,7 @@
 /**
  *  mFWConnection delegate
  */
-@property (nonatomic, assign) id<mFWConnectionDelegate, CLLocationManagerDelegate> delegate;
+@property (nonatomic, weak) id<mFWConnectionDelegate, CLLocationManagerDelegate> delegate;
 
 /**
  *  Login status
@@ -139,27 +139,27 @@
 /**
  *  Background color
  */
-@property (nonatomic, retain) UIColor *mFWColorOfBackground;
+@property (nonatomic, strong) UIColor *mFWColorOfBackground;
 
 /**
  *  Color of time label.
  */
-@property (nonatomic, retain) UIColor *mFWColorOfWallTime;
+@property (nonatomic, strong) UIColor *mFWColorOfWallTime;
 
 /**
  *  Color of text header
  */
-@property (nonatomic, retain) UIColor *mFWColorOfTextHeader;
+@property (nonatomic, strong) UIColor *mFWColorOfTextHeader;
 
 /**
  *  Color of text
  */
-@property (nonatomic, retain) UIColor *mFWColorOfText;
+@property (nonatomic, strong) UIColor *mFWColorOfText;
 
 /**
  *  Color for time label
  */
-@property (nonatomic, retain) UIColor *mFWColorOfTime;
+@property (nonatomic, strong) UIColor *mFWColorOfTime;
 
 /**
  * Array for storing full-sized images to show in mFWPhotoBrowser
@@ -167,7 +167,7 @@
  * every time user quits replies page, but photobrowser somehow
  * asynchronously tried to access it later and app crashed.
  */
-@property (nonatomic, retain) NSMutableArray *mFWLargeImagesForBrowsingFromPreviews;
+@property (nonatomic, strong) NSMutableArray *mFWLargeImagesForBrowsingFromPreviews;
 
 /**
  * Control property. Set it to NO if you do not want send user location data along the message
@@ -177,7 +177,7 @@
 /**
  * Application name to put into sharing message
  */
-@property (nonatomic, retain) NSString *appName;
+@property (nonatomic, strong) NSString *appName;
 
 /**
  * Key for storing location enabled flag in User Defaults

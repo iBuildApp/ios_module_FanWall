@@ -83,7 +83,6 @@
                                         cancelButtonTitle:NSBundleLocalizedString(@"mFW_noCameraOkButtonTitle", @"OK")
                                         otherButtonTitles:nil];
   [alert show];
-  [alert release];
 }
 
 
@@ -112,7 +111,7 @@
 #pragma mark UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-  UIImage *tImage = [[info objectForKey:@"UIImagePickerControllerOriginalImage"] retain];
+  UIImage *tImage = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
   
   if ( tImage.imageOrientation == UIImageOrientationRight )
     tImage = [UIImage imageWithCGImage:[self CGImageRotatedByAngle:tImage.CGImage angle:-90.0f]];
@@ -123,9 +122,8 @@
   
   [self.imageConsumer performSelector:@selector(imagePickedCallback:) withObject:tImage];
   
-  [tImage release];
   
-  [picker dismissModalViewControllerAnimated:YES];
+  [picker dismissViewControllerAnimated:YES completion:nil];
   
   dispatch_async(dispatch_get_main_queue(), ^{
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
@@ -134,7 +132,7 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-  [picker dismissModalViewControllerAnimated:YES];
+  [picker dismissViewControllerAnimated:YES completion:nil];
   
   if([self.imageConsumer respondsToSelector:@selector(imagePickCancelledCallback)]){
     [self.imageConsumer performSelector:@selector(imagePickCancelledCallback)];
@@ -149,7 +147,7 @@
 
 - (void) provideAnImageFromGallery
 {
-  self.imagePicker = [[[UIImagePickerController alloc] init] autorelease];
+  self.imagePicker = [[UIImagePickerController alloc] init];
   [self setupImagePickerForGallery];
   
   [self showPicker];
@@ -157,7 +155,7 @@
 
 - (void) provideAnImageWithCamera
 {
-  self.imagePicker = [[[UIImagePickerController alloc] init] autorelease];
+  self.imagePicker = [[UIImagePickerController alloc] init];
   if([self setupImagePickerForCamera]) {
   
   [self showPicker];
@@ -169,7 +167,7 @@
 - (void)showPicker
 {
   dispatch_async(dispatch_get_main_queue(), ^{
-    [self.presentingController presentModalViewController:self.imagePicker animated:YES];
+    [self.presentingController presentViewController:self.imagePicker animated:YES completion:nil];
   });
 }
 
@@ -200,7 +198,6 @@
   
   CGImageRef rotatedImage = CGBitmapContextCreateImage(bmContext);
   CFRelease(bmContext);
-  [(id)rotatedImage autorelease];
   
   return rotatedImage;
 }
@@ -214,12 +211,5 @@
   });
 }
 
-- (void) dealloc
-{
-  self.imagePicker = nil;
-  self.actionSheet = nil;
-  
-  [super dealloc];
-}
 
 @end

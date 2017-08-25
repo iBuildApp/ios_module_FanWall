@@ -11,11 +11,11 @@
 
 
 #import <UIKit/UIKit.h>
-
+#import <WebKit/WebKit.h>
 /**
  * Controller to show FanWall messages near you.
  */
-@interface mFWMap : UIViewController <CLLocationManagerDelegate, UIWebViewDelegate>
+@interface mFWMap : UIViewController <CLLocationManagerDelegate, WKNavigationDelegate>
 
 /**
  * Points to be displayed on map.

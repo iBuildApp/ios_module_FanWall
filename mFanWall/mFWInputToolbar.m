@@ -15,7 +15,7 @@
 #import "NSString+size.h"
 
 @interface mFWInputToolbar() {
-    id<mFWInputToolbarDelegate> _inputToolbarDelegate;
+    id<mFWInputToolbarDelegate> __weak _inputToolbarDelegate;
     
     CGFloat textViewOriginX;
     CGFloat textViewShortenedOriginX;
@@ -156,8 +156,6 @@ NSString *const kFWMessagePostImagesKey = @"images";
     [self.imagePickerImageView addGestureRecognizer:imagePickerTapGestureRecognizer];
     [self.senderImageView addGestureRecognizer:senderTapGestureRecognizer];
 
-    [imagePickerTapGestureRecognizer release];
-    [senderTapGestureRecognizer release];
     
     [self adjustIconsToVerticalCenter];
     
@@ -368,7 +366,7 @@ NSString *const kFWMessagePostImagesKey = @"images";
 {
     NSLog(@"Got image from provider");
     
-    UIImage *ourImage = [image retain];
+    UIImage *ourImage = image;
     
     if(self.multiImageMode){
         [self.pickedImages addObject:ourImage];
@@ -492,13 +490,10 @@ NSString *const kFWMessagePostImagesKey = @"images";
             UITapGestureRecognizer *removeRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removePreviewImage:)];
             
             [removePreviewCross addGestureRecognizer:removeRecognizer];
-            [removeRecognizer release];
             
             [self.previewPaneScrollView addSubview:previewImageView];
-            [previewImageView release];
             
             [self.previewPaneScrollView insertSubview:removePreviewCross aboveSubview:previewImageView];
-            [removePreviewCross release];
             
             
             previewImageOriginX += kPreviewImageWidthAndHeight + kSpaceBetweenImages;
@@ -579,14 +574,13 @@ NSString *const kFWMessagePostImagesKey = @"images";
                                          self.borderView.frame.size.width,
                                          kPreviewPaneHeight);
     
-    UIView *previewPaneView = [[[UIView alloc] initWithFrame:previewPaneFrame] autorelease];
+    UIView *previewPaneView = [[UIView alloc] initWithFrame:previewPaneFrame];
     previewPaneView.backgroundColor = [UIColor clearColor];
     
-    UIView *spacer = [[[UIView alloc] initWithFrame:CGRectMake(kPreviewImageLeftPadding,
+    UIView *spacer = [[UIView alloc] initWithFrame:CGRectMake(kPreviewImageLeftPadding,
                                                                (kPreviewPaneHeight - kPreviewPaneSpacerHeight),
                                                                previewPaneFrame.size.width - 2 * kPreviewImageLeftPadding,
-                                                               kPreviewPaneSpacerHeight)]
-                      autorelease];
+                                                               kPreviewPaneSpacerHeight)];
     
     spacer.backgroundColor = kPreviewPaneSpacerColor;
     [previewPaneView addSubview:spacer];
@@ -595,7 +589,7 @@ NSString *const kFWMessagePostImagesKey = @"images";
     
     CGRect scrollViewFrame = CGRectMake(0.0f, kPreviewImageTopPadding, previewPaneFrame.size.width, kPreviewImageWidthAndHeight);
     
-    UIScrollView *paneScrollView = [[[UIScrollView alloc] initWithFrame:scrollViewFrame] autorelease];
+    UIScrollView *paneScrollView = [[UIScrollView alloc] initWithFrame:scrollViewFrame];
     paneScrollView.contentSize = CGSizeMake(0.0, scrollViewFrame.size.height);
     
     [previewPaneView addSubview:paneScrollView];
@@ -620,7 +614,7 @@ NSString *const kFWMessagePostImagesKey = @"images";
 -(UIView *) constructAuxiliaryToolbar
 {
     CGRect auxiliaryToolbarFrame = (CGRect){0.0f, kInputToolbarInitialHeight, self.frame.size.width, kAuxiliaryToolbarHeight};
-    UIView *auxiliaryToolbar = [[[UIView alloc] initWithFrame:auxiliaryToolbarFrame] autorelease];
+    UIView *auxiliaryToolbar = [[UIView alloc] initWithFrame:auxiliaryToolbarFrame];
     
     auxiliaryToolbar.backgroundColor = kInputToolBarColor;
     
@@ -629,13 +623,13 @@ NSString *const kFWMessagePostImagesKey = @"images";
     
     
     CGRect pickFromGalleryImageViewFrame = (CGRect){0.0f, 0.0f, kAuxiliaryToolbarHeight, kAuxiliaryToolbarHeight};
-    self.pickFromGalleryImageView = [[[UIImageView alloc] initWithFrame:pickFromGalleryImageViewFrame] autorelease];
+    self.pickFromGalleryImageView = [[UIImageView alloc] initWithFrame:pickFromGalleryImageViewFrame];
     _pickFromGalleryImageView.contentMode = UIViewContentModeCenter;
     _pickFromGalleryImageView.image = [UIImage imageNamed:resourceFromBundle(@"mFW_gallery")];
     CGPoint galleryIconImageViewCenter = (CGPoint){self.frame.size.width / 2, kAuxiliaryToolbarHeight / 2};
     _pickFromGalleryImageView.center = galleryIconImageViewCenter;
     
-    UITapGestureRecognizer *pickFromGalleryGestureRecognizer = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pickFromGallery:)] autorelease];
+    UITapGestureRecognizer *pickFromGalleryGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pickFromGallery:)];
     [self.pickFromGalleryImageView addGestureRecognizer:pickFromGalleryGestureRecognizer];
     
     [auxiliaryToolbar addSubview:_pickFromGalleryImageView];
@@ -644,12 +638,12 @@ NSString *const kFWMessagePostImagesKey = @"images";
     CGRect takeAPhotoImageViewFrame = pickFromGalleryImageViewFrame;
     CGPoint takeAPhotoImageViewCenter = galleryIconImageViewCenter;
     takeAPhotoImageViewCenter.x -= kAuxiliaryToolbarSpaceBetweenIconCenters;
-    self.takeAPhotoImageView = [[[UIImageView alloc] initWithFrame:takeAPhotoImageViewFrame] autorelease];
+    self.takeAPhotoImageView = [[UIImageView alloc] initWithFrame:takeAPhotoImageViewFrame];
     _takeAPhotoImageView.contentMode = UIViewContentModeCenter;
     _takeAPhotoImageView.center = takeAPhotoImageViewCenter;
     _takeAPhotoImageView.image = [UIImage imageNamed:resourceFromBundle(@"mFW_photo")];
     
-    UITapGestureRecognizer *takeAPhotoGestureRecognizer = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(takeAPhoto:)] autorelease];
+    UITapGestureRecognizer *takeAPhotoGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(takeAPhoto:)];
     [self.takeAPhotoImageView addGestureRecognizer:takeAPhotoGestureRecognizer];
     
     [auxiliaryToolbar addSubview:_takeAPhotoImageView];
@@ -657,14 +651,14 @@ NSString *const kFWMessagePostImagesKey = @"images";
     CGRect toggleGeolocationImageViewFrame = pickFromGalleryImageViewFrame;
     CGPoint toggleGeolocationImageViewCenter = galleryIconImageViewCenter;
     toggleGeolocationImageViewCenter.x += kAuxiliaryToolbarSpaceBetweenIconCenters;
-    self.toggleGeolocationImageView = [[[UIImageView alloc] initWithFrame:toggleGeolocationImageViewFrame] autorelease];
+    self.toggleGeolocationImageView = [[UIImageView alloc] initWithFrame:toggleGeolocationImageViewFrame];
     _toggleGeolocationImageView.center = toggleGeolocationImageViewCenter;
     _toggleGeolocationImageView.image = [UIImage imageNamed:resourceFromBundle(@"mFW_geolocation_off")];
     _toggleGeolocationImageView.highlightedImage = [UIImage imageNamed:resourceFromBundle(@"mFW_geolocation_on")];
     _toggleGeolocationImageView.contentMode = UIViewContentModeCenter;
     _toggleGeolocationImageView.highlighted = NO;
     
-    UITapGestureRecognizer *toggleGeolocationGestureRecognizer = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggleGeolocation:)] autorelease];
+    UITapGestureRecognizer *toggleGeolocationGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggleGeolocation:)];
     [self.toggleGeolocationImageView addGestureRecognizer:toggleGeolocationGestureRecognizer];
     
     [auxiliaryToolbar addSubview:_toggleGeolocationImageView];
@@ -684,7 +678,7 @@ NSString *const kFWMessagePostImagesKey = @"images";
 -(UIView *) makeHorizontalBorder
 {
     CGRect borderFrame = CGRectMake(0.0f, -kBorderHeight, self.frame.size.width, kBorderHeight);
-    UIView *border = [[[UIView alloc] initWithFrame:borderFrame] autorelease];
+    UIView *border = [[UIView alloc] initWithFrame:borderFrame];
     border.backgroundColor = kBorderColor;
     
     return border;
@@ -709,29 +703,5 @@ NSString *const kFWMessagePostImagesKey = @"images";
     return trueHeight;
 }
 
-- (void) dealloc
-{
-    self.imagePickerImageView = nil;
-    self.senderImageView = nil;
-    self.textView = nil;
-  
-    self.pickFromGalleryImageView = nil;
-    self.takeAPhotoImageView = nil;
-    self.toggleGeolocationImageView = nil;
-    
-    self.previewPaneScrollView = nil;
-    self.previewPaneSpacerView = nil;
-    
-    self.borderView = nil;
-    self.backgroundView = nil;
-    self.previewPane = nil;
-    
-    self.pickedImages = nil;
-    self.notificationName = nil;
-    
-    self.auxiliaryToolbar = nil;
-    
-    [super dealloc];
-}
 
 @end

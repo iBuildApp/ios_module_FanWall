@@ -16,7 +16,7 @@
 #import "mFWProfile.h"
 #import "mFWSettings.h"
 
-#import "Reachability.h"
+#import "reachability.h"
 #import <Smartling.i18n/SLLocalization.h>
 
 #import <auth_Share/auth_Share.h>
@@ -121,7 +121,7 @@ typedef enum {
   //i.e. not comment to comment
   @property BOOL isFirstLevelComment;
 
-  @property (nonatomic, retain) mFWInputToolbar *inputToolbar;
+  @property (nonatomic, strong) mFWInputToolbar *inputToolbar;
 
   @property (nonatomic, strong) UIImage *placeholderImage;
 
@@ -194,30 +194,16 @@ typedef enum {
 
 - (void)dealloc
 {
-  self.r1parentID  = nil;
-  self.r1replyID   = nil;
-  self.r1firstPost = nil;
   
   if (self.photos){
-    [self.photos release];
+    self.photos = nil;
   }
-  self.photos      = nil;
   
-  self.replies       = nil;
-  self.FWConnection  = nil;
   self.rep1Posts     = nil;
-  self.s_rep1Posts   = nil;
-  self.firstPostID   = nil;
-  self.lastPostID    = nil;
-  self.hostReachable = nil;
 
-  self.commentsLabel = nil;
-  self.noCommentsYetLabel = nil;
-  self.inputToolbar = nil;
   
   if(enteredText != nil)
   {
-    [enteredText release];
     enteredText = nil;
   }
   if(replyImages != nil)
@@ -226,13 +212,10 @@ typedef enum {
   }
   
   if(backBarButton != nil){
-    [backBarButton release];
     backBarButton = nil;
   }
   
-  self.placeholderImage = nil;
   
-  [super dealloc];
 }
 
 #pragma mark -
@@ -311,7 +294,7 @@ typedef enum {
   
   self.FWConnection.requiresRequest = YES;
   
-  self.firstPostID = [[NSString new] autorelease];
+  self.firstPostID = [NSString new];
   
   self.rep1Posts = [NSMutableArray array];
   
@@ -353,7 +336,7 @@ typedef enum {
 
 - (void)createHeaderView
 {
-  self.headerView = [[[UIView alloc] init] autorelease];
+  self.headerView = [[UIView alloc] init];
   self.headerView.frame = (CGRect){0, 0, self.view.bounds.size.width, 100};
   self.headerView.backgroundColor = [UIColor colorWithWhite:0 alpha:kHeaderBackgroundObfuscation];
   
@@ -373,7 +356,6 @@ typedef enum {
   nameLabel.backgroundColor = [UIColor clearColor];
   
   [self.headerView addSubview:nameLabel];
-  [nameLabel release];
   
   dateLabel = [[UILabel alloc] init];
   dateLabel.frame = CGRectMake(kLeftMargin*2 + kLogoWidth, kTopMargin + 20, self.headerView.bounds.size.width - (kLeftMargin*3 + kLogoWidth), 15);
@@ -385,7 +367,6 @@ typedef enum {
   dateLabel.textAlignment = NSTextAlignmentLeft;
   
   [self.headerView addSubview:dateLabel];
-  [dateLabel release];
   
   logoImageView = [[UIImageView alloc] initWithFrame:(CGRect){kLeftMargin, kTopMargin, kLogoWidth, kLogoHeight}];
   logoImageView.tag = 3;
@@ -400,10 +381,8 @@ typedef enum {
   avatarImageTap.delegate = self;
   [logoImageView addGestureRecognizer:avatarImageTap];
   
-  [avatarImageTap release];
 
   [self.headerView addSubview:logoImageView];
-  [logoImageView release];
   
   
   textLabel = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -415,7 +394,6 @@ typedef enum {
   textLabel.backgroundColor = [UIColor clearColor];
   
   [self.headerView addSubview:textLabel];
-  [textLabel release];
   
   
   if ( [[self.r1firstPost objectForKey:@"user_avatar"] length] )
@@ -436,7 +414,6 @@ typedef enum {
                             success:fadeInBlock
                             failure:nil];
     
-    [fadeInBlock release];
   }
   else
   {
@@ -503,13 +480,11 @@ typedef enum {
                          success:fadeInBlock
                          failure:nil];
     
-    [fadeInBlock release];
     
     
     phImageView.contentMode = UIViewContentModeScaleAspectFill;
     phImageView.clipsToBounds = YES;
 
-    [phImageView release];
 
     [self.headerView addSubview:attachedImageView];
     attachedImageView.userInteractionEnabled = YES;
@@ -518,7 +493,6 @@ typedef enum {
 
     attachedImageTap.delegate = self;
     [attachedImageView addGestureRecognizer:attachedImageTap];
-    [attachedImageView release];
   }
   
   CGFloat attachedImageViewHeight = 0;
@@ -544,12 +518,12 @@ typedef enum {
   
   [self.headerView addSubview:self.commentsLabel];
   
-  UIView *topBorder = [[[UIView alloc] initWithFrame:CGRectMake(0, headerNewFrame.size.height - kTopCommentsBarHeight - 1, headerNewFrame.size.width, 1)] autorelease];
+  UIView *topBorder = [[UIView alloc] initWithFrame:CGRectMake(0, headerNewFrame.size.height - kTopCommentsBarHeight - 1, headerNewFrame.size.width, 1)];
   topBorder.backgroundColor = kSeparatorColor;
   
   [self.headerView addSubview:topBorder];
   
-  UIView *bottomBorder = [[[UIView alloc] initWithFrame:CGRectMake(0, headerNewFrame.size.height, headerNewFrame.size.width, 1)] autorelease];
+  UIView *bottomBorder = [[UIView alloc] initWithFrame:CGRectMake(0, headerNewFrame.size.height, headerNewFrame.size.width, 1)];
   bottomBorder.backgroundColor = kSeparatorColor;
   
   [self.headerView addSubview:bottomBorder];
@@ -567,7 +541,6 @@ typedef enum {
     self.noCommentsYetLabel.backgroundColor = [UIColor clearColor];
   
     [self.headerView addSubview:self.noCommentsYetLabel];
-    [self.noCommentsYetLabel release];
   }
 }
 
@@ -582,7 +555,7 @@ typedef enum {
   photo.description = description;
   [self.FWConnection.mFWLargeImagesForBrowsingFromPreviews addObject:photo];
   
-  mFWPhotoBrowser *browser = [[[mFWPhotoBrowser alloc] initWithDelegate:self] autorelease];
+  mFWPhotoBrowser *browser = [[mFWPhotoBrowser alloc] initWithDelegate:self];
   browser.displayActionButton  = YES;
   browser.bSavePicture         = YES;
   browser.leftBarButtonCaption = NSLocalizedString(@"mFW_commentsPageTitle", @"Comments");
@@ -615,7 +588,7 @@ typedef enum {
   
   NSIndexPath *swipedIndexPath = [self.replies indexPathForRowAtPoint:[recognizer locationInView:self.replies]];
   
-  mFWProfile *mFWProfileView = [[[mFWProfile alloc] init] autorelease];
+  mFWProfile *mFWProfileView = [[mFWProfile alloc] init];
   
   if(swipedIndexPath == nil){ // tapped on header avatar, not on comment in table view
     mFWProfileView.avatarURL   = [self.r1firstPost objectForKey:@"user_avatar"];
@@ -674,7 +647,6 @@ typedef enum {
   mFWReplies2VC.firstTimeLoad = YES;
   
   [self.navigationController pushViewController:mFWReplies2VC animated:YES];
-  [mFWReplies2VC release];
 }
 
 - (void)goToPost
@@ -690,7 +662,6 @@ typedef enum {
     if (!_rep1Posts)
       return;
     {
-      [_rep1Posts release];
       _rep1Posts = nil;
       return;
     }
@@ -698,8 +669,7 @@ typedef enum {
   
   if ( _rep1Posts != rep1Posts_ )
   {
-    [_rep1Posts release];
-    _rep1Posts = [rep1Posts_ retain];
+    _rep1Posts = rep1Posts_;
   }
 }
 
@@ -743,13 +713,12 @@ typedef enum {
   
   if ( cell == nil )
   {
-    cell = [[[mFWRepliesCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ReplyCell1] autorelease];
+    cell = [[mFWRepliesCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ReplyCell1];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     UITapGestureRecognizer *avatarImageTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showUserProfile:)];
     avatarImageTap.delegate = self;
     [cell.imageView addGestureRecognizer:avatarImageTap];
-    [avatarImageTap release];
     
     UITapGestureRecognizer *textLabelTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showUserProfile:)];
     textLabelTap.delegate = self;
@@ -758,7 +727,6 @@ typedef enum {
     UITapGestureRecognizer *attachedImageTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAttachedImage:)];
     attachedImageTap.delegate = self;
     [cell.attachedImageView addGestureRecognizer:attachedImageTap];
-    [attachedImageTap release];
   }
   
     // AVATAR
@@ -779,7 +747,6 @@ typedef enum {
                            success:fadeInBlock
                            failure:nil];
     
-    [fadeInBlock release];
   }
   else
   {
@@ -885,7 +852,6 @@ typedef enum {
                               success:fadeInBlock
                               failure:nil];
     
-    [fadeInBlock release];
     
     
     
@@ -1022,7 +988,7 @@ typedef enum {
   return YES;
 }
 
--(NSUInteger)supportedInterfaceOrientations
+-(UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
   return UIInterfaceOrientationMaskPortrait | UIInterfaceOrientationMaskPortraitUpsideDown;
 }
@@ -1036,8 +1002,8 @@ typedef enum {
 {
   CGRect repliesFrame = self.view.bounds;
   
-  self.replies = [[[UITableView alloc] initWithFrame:repliesFrame
-                                               style:UITableViewStylePlain] autorelease];
+  self.replies = [[UITableView alloc] initWithFrame:repliesFrame
+                                               style:UITableViewStylePlain];
   
   self.replies.showsHorizontalScrollIndicator = NO;
   self.replies.showsVerticalScrollIndicator = NO;
@@ -1061,10 +1027,10 @@ typedef enum {
   
   // EGORefreshTableHeaderView initialization
   self.reloading = NO;
-  self.refreshHeaderView = [[[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f,
+  self.refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f,
                                                                                         0.0f - self.replies.frame.size.height,
                                                                                         self.replies.bounds.size.width,
-                                                                                        self.replies.frame.size.height)] autorelease];
+                                                                                        self.replies.frame.size.height)];
 
   self.refreshHeaderView.delegate = self;
   
@@ -1074,7 +1040,6 @@ typedef enum {
   
   UITapGestureRecognizer *keyboardHider = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboardOnTapOutside)];
   [self.replies addGestureRecognizer:keyboardHider];
-  [keyboardHider release];
 }
 
 - (void) hideKeyboardOnTapOutside
@@ -1122,10 +1087,10 @@ typedef enum {
 - (void)loadRepliesWithCount:(NSInteger)count
              loadingStrategy:(RepliesLoadingStrategy) strategy
 {
-  self.s_rep1Posts = [[[[[[NSUserDefaults standardUserDefaults] objectForKey:@"s_rep1Posts"] objectForKey:self.r1parentID] objectForKey:self.r1replyID] mutableCopy] autorelease];
+  self.s_rep1Posts = [[[[[NSUserDefaults standardUserDefaults] objectForKey:@"s_rep1Posts"] objectForKey:self.r1parentID] objectForKey:self.r1replyID] mutableCopy];
   if ( !self.s_rep1Posts )
   {
-    self.s_rep1Posts = [[[NSMutableArray array] mutableCopy] autorelease];
+    self.s_rep1Posts = [[NSMutableArray array] mutableCopy];
   }
   
   if ( ( self.FWConnection.requiresRequest ) ||
@@ -1212,14 +1177,14 @@ typedef enum {
         
         NSMutableDictionary *tmpDictionary = [NSMutableDictionary dictionary];
         if ( [[[NSUserDefaults standardUserDefaults] objectForKey:@"s_rep1Posts"] count] )
-          tmpDictionary = [[[[NSUserDefaults standardUserDefaults] objectForKey:@"s_rep1Posts"] mutableCopy] autorelease];
+          tmpDictionary = [[[NSUserDefaults standardUserDefaults] objectForKey:@"s_rep1Posts"] mutableCopy];
         
-        NSMutableDictionary *D1 = [NSMutableDictionary dictionaryWithObject:[[self.rep1Posts copy] autorelease] forKey:self.r1replyID];
-        NSMutableDictionary *D2 = [NSMutableDictionary dictionaryWithObject:[[D1 copy] autorelease] forKey:self.r1parentID];
+        NSMutableDictionary *D1 = [NSMutableDictionary dictionaryWithObject:[self.rep1Posts copy] forKey:self.r1replyID];
+        NSMutableDictionary *D2 = [NSMutableDictionary dictionaryWithObject:[D1 copy] forKey:self.r1parentID];
         
-        [tmpDictionary addEntriesFromDictionary:[[D2 copy] autorelease]];
+        [tmpDictionary addEntriesFromDictionary:[D2 copy]];
         
-        [[NSUserDefaults standardUserDefaults] setObject:[[tmpDictionary copy] autorelease]
+        [[NSUserDefaults standardUserDefaults] setObject:[tmpDictionary copy]
                                                   forKey:@"s_rep1Posts"];
         
         [tmpDictionary removeAllObjects];
@@ -1365,22 +1330,19 @@ typedef enum {
   loginVC.appID = self.FWConnection.mFWAppID;
   loginVC.moduleID = self.FWConnection.mFWModuleID;
   
-  UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:loginVC] autorelease];
+  UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:loginVC];
   navController.modalPresentationStyle = UIModalPresentationFormSheet;
   
   navController.navigationBar.barStyle = self.navigationController.navigationBar.barStyle;
   navController.navigationBar.translucent = self.navigationController.navigationBar.translucent;
   navController.navigationBar.tintColor = self.navigationController.navigationBar.tintColor;
   
-#ifdef __IPHONE_7_0
   if ([[[UIDevice currentDevice] systemVersion] compare:@"7.0" options:NSNumericSearch] != NSOrderedAscending)
     navController.navigationBar.barTintColor = self.navigationController.navigationBar.barTintColor;
   navController.navigationBar.titleTextAttributes = self.navigationController.navigationBar.titleTextAttributes;
-#endif
   
   [self.navigationController presentViewController:navController animated:YES completion:nil];
   
-  [loginVC release];
 }
 
 - (void)inputToolbarInit
@@ -1395,7 +1357,7 @@ typedef enum {
   
   CGRect inputToolbarFrame = CGRectMake(0.0f, self.view.frame.size.height - kInputToolbarInitialHeight, self.view.frame.size.width,  kInputToolbarInitialHeight);
   
-  self.inputToolbar = [[[mFWInputToolbar alloc] initWithFrame:inputToolbarFrame andManagingController:self] autorelease];
+  self.inputToolbar = [[mFWInputToolbar alloc] initWithFrame:inputToolbarFrame andManagingController:self];
   self.inputToolbar.backgroundColor = kInputToolBarColor;
   [self.FWConnection refreshInputToolbarGeolocationIndicator:self.inputToolbar];
   
@@ -1468,11 +1430,11 @@ typedef enum {
   {
     if ( [[response objectForKey:@"error"] length] )
     {
-      UIAlertView *sendingErrorAlertView = [[[UIAlertView alloc] initWithTitle:@""
+      UIAlertView *sendingErrorAlertView = [[UIAlertView alloc] initWithTitle:@""
                                                                        message:NSBundleLocalizedString(@"mFW_postMessageFailedAlertMessage", @"Sending failed. Please try again")
                                                                       delegate:self
                                                              cancelButtonTitle:NSBundleLocalizedString(@"mFW_postMessageFailedAlertOkButtonTitle", @"OK")
-                                                             otherButtonTitles:nil] autorelease];
+                                                             otherButtonTitles:nil];
       
       [sendingErrorAlertView show];
       
@@ -1555,11 +1517,9 @@ typedef enum {
   UITapGestureRecognizer *maskViewTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
   maskViewTap.delegate = self;
   [maskView addGestureRecognizer:maskViewTap];
-  [maskViewTap release];
   
   [self.view insertSubview:maskView belowSubview:self.inputToolbar];
   
-  [maskView release];
 }
 
 - (void)hideKeyboard

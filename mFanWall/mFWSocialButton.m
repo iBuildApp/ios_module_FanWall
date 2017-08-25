@@ -14,9 +14,9 @@
 
 @interface mFWSocialButton()
 
-@property (nonatomic, retain) UILabel *countLabel;
-@property (nonatomic, retain) UIView *socialView;
-@property (nonatomic, retain, readwrite) UIImageView *socialImageView;
+@property (nonatomic, strong) UILabel *countLabel;
+@property (nonatomic, strong) UIView *socialView;
+@property (nonatomic, strong, readwrite) UIImageView *socialImageView;
 
 @end
 
@@ -51,8 +51,6 @@
 -(void)setSocialImage:(UIImage *)socialImage
 {
   if(socialImage != nil){
-    [socialImage retain];
-    [_socialImage release];
     _socialImage = socialImage;
     
     CGSize socialImageViewSize = _socialImageView.bounds.size;
@@ -81,7 +79,9 @@
   NSString *actionsCountString = [NSString stringWithFormat:@"%lu" ,(unsigned long)socialActionsCount];
   
   CGSize labelSize = _countLabel.bounds.size;
-  CGSize stringSize = [actionsCountString sizeWithFont:_countLabel.font];
+  //CGSize stringSize = [actionsCountString sizeWithFont:_countLabel.font];
+    CGSize elementSize = [actionsCountString sizeWithAttributes:@{ NSFontAttributeName: _countLabel.font}];
+    CGSize stringSize = CGSizeMake(ceilf(elementSize.width), ceilf(elementSize.height));
   
   if(!CGSizeEqualToSize(labelSize, stringSize)){
     CGRect newCountLabelBounds = _countLabel.frame;
@@ -136,11 +136,7 @@
 - (void) dealloc
 {
   self.socialImage = nil;
-  self.countLabel = nil;
-  self.socialImageView = nil;
-  self.socialView = nil;
   
-  [super dealloc];
 }
 
 @end

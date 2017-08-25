@@ -79,7 +79,7 @@
  * URL string for image being currently presented in cell.
  * Nil if image is hidden.
  */
-@property (nonatomic, readonly, retain) NSString *attachedImageThumbnailURL;
+@property (nonatomic, readonly, strong) NSString *attachedImageThumbnailURL;
 
 #pragma mark Text labels
 
@@ -87,18 +87,18 @@
  * Label with author user name.
  * By default, points to self.textLabel.
  */
-@property (nonatomic, retain) UILabel *userNameLabel;
+@property (nonatomic, strong) UILabel *userNameLabel;
 
 /**
  * Label with post's sending date.
  * By default, points to self.detailTextLabel.
  */
-@property (nonatomic, retain) UILabel *postDateLabel;
+@property (nonatomic, strong) UILabel *postDateLabel;
 
 /**
  * Label for post's message.
  */
-@property (nonatomic, retain) UILabel *postMessageLabel;
+@property (nonatomic, strong) UILabel *postMessageLabel;
 
 #pragma mark Social buttons
 /**
@@ -106,7 +106,7 @@
  *
  * @see mFWSocialButton
  */
-@property (nonatomic, retain) mFWSocialButton *commentsButton;
+@property (nonatomic, strong) mFWSocialButton *commentsButton;
 
 /**
  * Button showing the number of facebook likes for image in post, 
@@ -116,7 +116,7 @@
  *
  * @see mFWSocialButton
  */
-@property (nonatomic, retain) mFWSocialButton *likesButton;
+@property (nonatomic, strong) mFWSocialButton *likesButton;
 
 /**
  * Button showing the number shares for the image, both on twitter and facebook.
@@ -124,41 +124,41 @@
  *
  * @see mFWSocialButton
  */
-@property (nonatomic, retain) mFWSocialButton *sharesButton;
+@property (nonatomic, strong) mFWSocialButton *sharesButton;
 
 
 #pragma mark Misc views
 /**
  * Backing view (with rounded corners) for a cell.
  */
-@property (nonatomic, retain) UIView *backgroundRoundedRectangle;
+@property (nonatomic, strong) UIView *backgroundRoundedRectangle;
 
 /**
  * Separator line between user avatar, name, date and the rest of the cell.
  */
-@property (nonatomic, retain) UIView *postContentsSpacer;
+@property (nonatomic, strong) UIView *postContentsSpacer;
 
 /**
  * White view with a shadow to lay attached image on.
  */
-@property (nonatomic, retain) UIView *attachedThumbnailImageViewContainer;
+@property (nonatomic, strong) UIView *attachedThumbnailImageViewContainer;
 
 /**
  * Image view for attached image.
  */
-@property (nonatomic, retain) UIImageView *attachedThumbnailImageView;
+@property (nonatomic, strong) UIImageView *attachedThumbnailImageView;
 
 /**
  * Image view for user's avatar.
  */
-@property (nonatomic, retain) UIImageView *avatarImageView;
+@property (nonatomic, strong) UIImageView *avatarImageView;
 
 /**
  * Separator line between message (or image, if exists) and socialButtonsPane.
  *
  * @see socialButtonsPane
  */
-@property (nonatomic, retain) UIView *commentsSpacer;
+@property (nonatomic, strong) UIView *commentsSpacer;
 
 /**
  * Container for social buttons.
@@ -167,7 +167,7 @@
  * @see likesButton
  * @see sharesButton
  */
-@property (nonatomic, retain) UIView *socialButtonsPane;
+@property (nonatomic, strong) UIView *socialButtonsPane;
 
 /**
  * URL string for image being currently presented in cell.

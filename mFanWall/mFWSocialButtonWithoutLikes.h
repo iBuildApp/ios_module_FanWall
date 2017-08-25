@@ -26,12 +26,12 @@
 /**
  * Icon for social action (comment, sharing, like).
  */
-@property (nonatomic, retain) UIImage *socialImage;
+@property (nonatomic, strong) UIImage *socialImage;
 
 /**
  * ImageView for socialImage, in case you want customization.
  */
-@property (nonatomic, retain, readonly) UIImageView *socialImageView;
+@property (nonatomic, strong, readonly) UIImageView *socialImageView;
 
 /**
  * Social actions count, e.g. count of likes.

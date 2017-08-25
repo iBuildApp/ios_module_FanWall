@@ -14,7 +14,7 @@
 /**
  * Delegate which responds to actions of retreiving an image or cancellation of picking.
  */
-@protocol mFWImageConsumer
+@protocol mFWImageConsumer <NSObject>
 
 @optional
 /**

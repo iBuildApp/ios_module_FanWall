@@ -14,7 +14,7 @@
 
 @interface mFWPostCell()
 
-@property (nonatomic, readwrite, retain) NSString *attachedImageThumbnailURL;
+@property (nonatomic, readwrite, strong) NSString *attachedImageThumbnailURL;
 
 @end;
 
@@ -35,26 +35,6 @@
   return self;
 }
 
-- (void) dealloc
-{
-  self.userNameLabel = nil;
-  self.postDateLabel = nil;
-  self.postContentsSpacer = nil;
-  self.postMessageLabel = nil;
-  self.attachedThumbnailImageViewContainer = nil;
-  self.commentsSpacer = nil;
-  self.socialButtonsPane = nil;
-  self.backgroundRoundedRectangle = nil;
-  
-  self.commentsButton = nil;
-  self.likesButton = nil;
-  self.sharesButton = nil;
-  self.attachedImageThumbnailURL = nil;
-  self.attachedThumbnailImageView = nil;
-  self.avatarImageView = nil;
-    
-  [super dealloc];
-}
 
 - (void)layoutSubviews
 {
@@ -118,7 +98,6 @@
                          success:fadeInBlock
                          failure:nil];
     
-    [fadeInBlock release];
 }
 
 -(void)setAvatarImageForURL:(NSString *)URL withPlaceholderImage:(UIImage *)placeholderImage;
@@ -138,7 +117,6 @@
                             success:nil
                             failure:nil];
     
-    [fadeInBlock release];
 }
 
 @end
